@@ -1,0 +1,29 @@
+facem src / main / rsources, pentru applciation.properties
+daca iti faci mavenu tau, vezi in conf file unde face repo, plugins, si daca ai vreun mirror sau default
+-----
+tre configurat spring boot
+(cu ersistence xml)
+
+tre configurata dependinta de hsqldb - in mem db;
+
+daca vrei sa vezi clientu, in un test biag
+new thread(new runnable (DatabaseManagerSwing.main(new String[]{"--url", "jdbc:hsqldb:mem:" + EmbeddedDatabaseFactory.DEFAULT_DATABASE_NAME, "--user", "sa", "--password", ""});)).start();
+apoi pi un break undeva in test, ca sa poti sa lucrezi din cleintul asta;
+
+
+un test tre sa arate
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {
+        "classpath:batch/config.xml",
+        "classpath:batch/jobs.xml"})
+@TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class,
+        DirtiesContextTestExecutionListener.class, DbUnitTestExecutionListener.class},
+        mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS)
+@ActiveProfiles("test")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+
+- el deja are scri[pturi, unde e definita bd;
+
+first un test simplu, fara bd,
+apoi untest pe bd

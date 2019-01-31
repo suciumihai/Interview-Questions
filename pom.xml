@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.coface</groupId>
+    <artifactId>IntQuest</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+   <dependencies>
+
+       <!-- spring container, spring boot are functionalitati peste -->
+
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-web</artifactId>
+           <version>2.0.8.RELEASE</version>
+       </dependency>
+
+       <!-- persistence -->
+       <!-- japrepo -->
+       <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.0.3.RELEASE</version>
+        </dependency>
+
+       <!-- @entity -->
+       <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.2.17.Final</version>
+        </dependency>
+
+       <!-- in mem db -->
+       <dependency>
+           <groupId>org.hsqldb</groupId>
+           <artifactId>hsqldb</artifactId>
+           <version>2.3.4</version>
+       </dependency>
+
+       <!-- validation -->
+       <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.4.Final</version>
+        </dependency>
+
+       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+       <dependency>
+           <groupId>org.projectlombok</groupId>
+           <artifactId>lombok</artifactId>
+           <version>1.16.10</version>
+       </dependency>
+
+   </dependencies>
+
+
+</project>
