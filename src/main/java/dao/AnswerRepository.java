@@ -3,5 +3,5 @@ package dao;
 import model.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IAnswerDao extends JpaRepository<Answer, Long> {
+public interface AnswerRepository extends JpaRepository<Answer, Long> {
 }

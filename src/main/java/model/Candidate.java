@@ -7,11 +7,22 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 public class Candidate {
+
+    //construcotr jsut to test with in mem db, and canditateHelper
+    public Candidate(){
+    }
+
+    public Candidate(Long id, String name){
+        super();
+        this.id = id;
+        this.name = name;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,4 +38,11 @@ public class Candidate {
 
     private String phone;
 
+    // just to test the embedalle candidate helpser
+    @ElementCollection
+    private List<CandidateHelperClass> candidateHelperClasses = new ArrayList<>();
+
+    public String getName() {
+        return name;
+    }
 }
