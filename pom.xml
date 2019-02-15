@@ -7,8 +7,20 @@
     <groupId>com.coface</groupId>
     <artifactId>IntQuest</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-   <dependencies>
+    <dependencies>
 
        <!-- spring container, spring boot are functionalitati peste -->
 
@@ -40,6 +52,12 @@
            <version>2.3.4</version>
        </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.194</version>
+        </dependency>
+
        <!-- validation -->
        <dependency>
             <groupId>org.hibernate</groupId>
@@ -68,6 +86,12 @@
            <version>4.12</version>
            <scope>test</scope>
        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.7.RELEASE</version>
+        </dependency>
 
    </dependencies>
 

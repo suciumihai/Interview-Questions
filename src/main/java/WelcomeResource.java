@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 //daca rest controller vine din spring.web si gata, de ce mai am in pom <groupId>org.springframework.boot</groupId> si spring-boot-starter-web?!?!?!!???!!??!?!?!?!?
