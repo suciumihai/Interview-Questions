@@ -27,9 +27,10 @@ public class TestQuestion {
 
     private Type type;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    //sarim validare for now...
+    //@ManyToOne
+    //@JoinColumn(name = "category_id")
+    //private Category category;
 
     private String content;
 

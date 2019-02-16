@@ -2,6 +2,7 @@ package model;
 
 import lombok.Getter;
 import lombok.Setter;
+import model.version.TestQuestion;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,6 +24,9 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Question> questions = new ArrayList<Question>();
 
+    //sarim versionare for now
+    //@OneToMany(mappedBy = "category")
+    //private List<TestQuestion> testQuestions = new ArrayList<>();
 
     // aici tratam o FK catre el, ca parinte
     // fiind lazy jpa lista automat, dar nu e cam in tabel. il incarca din bd, doar de pe primu nivel
@@ -30,13 +34,13 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category parent;
-
+    //????????????????????????????e om mapat?????????
     @OneToMany(mappedBy = "parent")
     private List<Category> children=new ArrayList<Category>();
 
 
     //chiar nu stiu daca vreau o lista de categoryTemplate in category, il las commented 4 now
-    //@OneToMany(mappedBy = "category")
-    //private List<CategoryTemplate> categoryTemplates = new ArrayList<CategoryTemplate>();
+    @OneToMany(mappedBy = "category")
+    private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
 
 }

@@ -32,7 +32,8 @@ public class Test {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "test")
-    private List<TestQuestion> testQuestions=new ArrayList<TestQuestion>();
+    //sarim versionare, for now...
+    //@OneToMany(mappedBy = "test")
+    //private List<TestQuestion> testQuestions=new ArrayList<TestQuestion>();
 
 }

@@ -38,11 +38,4 @@ public class Candidate {
 
     private String phone;
 
-    // just to test the embedalle candidate helpser
-    @ElementCollection
-    private List<CandidateHelperClass> candidateHelperClasses = new ArrayList<>();
-
-    public String getName() {
-        return name;
-    }
 }

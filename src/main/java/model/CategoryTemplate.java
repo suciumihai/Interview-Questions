@@ -18,11 +18,11 @@ public class CategoryTemplate {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "template_id")
     private Template template;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
