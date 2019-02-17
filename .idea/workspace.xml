@@ -3,19 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="65417f26-9042-49d0-a79f-6e24ede22b04" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/AnswerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/AnswerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CandidateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/CandidateRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CategoryTemplateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/CategoryTemplateRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/QuestionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TemplateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/TemplateRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/TestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Candidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Candidate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/dao/InMemoryDBIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/repository/InMemoryDBIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Candidate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Candidate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/AnswerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AnswerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/CandidateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CandidateRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/CategoryTemplateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CategoryTemplateRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/QuestionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/TemplateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TemplateRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/repository/InMemoryDBIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/dao/InMemoryDBIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/dao/InMemoryDBIntegrationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/dao/InMemoryDBIntegrationTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,33 +22,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/App.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/repository/InMemoryDBIntegrationTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="64" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -74,6 +49,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -144,7 +124,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,16 +191,17 @@
               <item name="Interview-Questions" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550386521255" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550387742682" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -251,10 +231,25 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.InMemoryDBIntegrationTest (1)">
+    <configuration name="InMemoryDBIntegrationTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IntQuest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dao" />
+      <option name="MAIN_CLASS_NAME" value="dao.InMemoryDBIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="InMemoryDBIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="repository.*" />
+          <option name="PATTERN" value="dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -307,9 +302,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="InMemoryDBIntegrationTest_(1) - 2019.02.16 at 13h 30m 28s.xml">
-      <configuration name="InMemoryDBIntegrationTest (1)" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="InMemoryDBIntegrationTest_(1) - 2019.02.16 at 13h 33m 38s.xml">
       <configuration name="InMemoryDBIntegrationTest (1)" configurationId="JUnit" />
     </history-entry>
@@ -337,12 +329,15 @@
     <history-entry file="InMemoryDBIntegrationTest_(1) - 2019.02.17 at 06h 36m 47s.xml">
       <configuration name="InMemoryDBIntegrationTest (1)" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="InMemoryDBIntegrationTest_(1) - 2019.02.17 at 09h 15m 25s.xml">
+      <configuration name="InMemoryDBIntegrationTest (1)" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2835821" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2867804" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -351,7 +346,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32827735" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -402,26 +397,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/CategoryRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/TestRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/CategoryRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/TestRepository.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/model/CandidateHelperClass.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/model/version/TestAnswer.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -453,56 +430,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/AnswerRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/CandidateRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/CategoryTemplateRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/QuestionRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/TemplateRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/AnswerRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/CandidateRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/CategoryTemplateRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/QuestionRepository.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/TemplateRepository.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Candidate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -544,16 +476,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/UserRepository.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Answer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -571,27 +494,12 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/App.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/dao/InMemoryDBIntegrationTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/repository/InMemoryDBIntegrationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="64" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>

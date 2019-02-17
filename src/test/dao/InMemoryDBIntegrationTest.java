@@ -1,4 +1,4 @@
-package repository;
+package dao;
 
 import config.JpaConfig;
 import model.Candidate;

@@ -1,4 +1,4 @@
-package repository;
+package dao;
 
 import model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
