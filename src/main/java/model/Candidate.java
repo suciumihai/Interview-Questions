@@ -14,16 +14,6 @@ import java.util.List;
 @Setter
 public class Candidate {
 
-    //construcotr jsut to test with in mem db, and canditateHelper
-    public Candidate(){
-    }
-
-    public Candidate(Long id, String name){
-        super();
-        this.id = id;
-        this.name = name;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

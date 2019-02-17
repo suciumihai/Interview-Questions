@@ -1,4 +1,4 @@
-package dao;
+package repository;
 
 import model.Test;
 import org.springframework.data.jpa.repository.JpaRepository;

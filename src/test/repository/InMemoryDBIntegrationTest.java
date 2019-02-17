@@ -1,4 +1,4 @@
-package dao;
+package repository;
 
 import config.JpaConfig;
 import model.Candidate;
@@ -13,7 +13,6 @@ import javax.transaction.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
-//AnnotationConfigContextLoader e din spring
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
         classes = { JpaConfig.class },
@@ -29,7 +28,8 @@ public class InMemoryDBIntegrationTest {
 
     @Test
     public void givenCandidate_whenSave_thenGetOk() {
-        Candidate candidate1 = new Candidate(ID, NAME);
+        Candidate candidate1 = new Candidate();
+        candidate1.setName(NAME);
         candidateRepository.save(candidate1);
 
         Candidate candidate2 = candidateRepository.getOne(ID);
