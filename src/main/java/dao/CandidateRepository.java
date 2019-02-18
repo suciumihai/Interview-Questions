@@ -1,4 +1,4 @@
-package repository;
+package dao;
 
 import model.Candidate;
 import org.springframework.data.jpa.repository.JpaRepository;

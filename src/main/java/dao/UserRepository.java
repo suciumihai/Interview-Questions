@@ -1,4 +1,4 @@
-package repository;
+package dao;
 
 import model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
