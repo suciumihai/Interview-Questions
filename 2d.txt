@@ -15,7 +15,7 @@ un test tre sa arate
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:batch/config.xml",
+        "classpath:batch/interview.config.xml",
         "classpath:batch/jobs.xml"})
 @TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class, DbUnitTestExecutionListener.class},
