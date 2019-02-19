@@ -7,8 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 //RESTful web services. It serves JSON, XML and custom response. This is the interview.controller class file that contains GET, POST, PUT methods REST Endpoint
 @RestController
@@ -18,28 +17,26 @@ public class CandidateServiceController {
     private CandidateRepository candidateRepository;
 
     @RequestMapping(value = "/candidates")
-    public ResponseEntity<Object> getCandidates(){
-        return new ResponseEntity<Object>(candidateRepository.findAll(), HttpStatus.OK);
+    public List<Candidate> getCandidates(){
+        return candidateRepository.findAll();
     }
 
     @RequestMapping(value = "/candidates", method = RequestMethod.POST)
-    public ResponseEntity<Object> createCandidate(@RequestBody Candidate candidate){
-        candidateRepository.save(candidate);
-        return new ResponseEntity<Object>("candidate is created successfully", HttpStatus.CREATED);
+    public Candidate createCandidate(@RequestBody Candidate candidate){
+        return candidateRepository.save(candidate);
     }
 
     @RequestMapping(value = "/candidates/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateCandidate(@PathVariable("id") String id, @RequestBody Candidate candidate){
+    public Candidate updateCandidate(@PathVariable("id") String id, @RequestBody Candidate candidate){
         candidateRepository.deleteById(Long.parseLong(id));
         candidate.setId(Long.parseLong(id));
         candidateRepository.save(candidate);
-        return new ResponseEntity<Object>("candidate is updated successsfully", HttpStatus.OK);
+        return candidate;
     }
 
     @RequestMapping(value = "/candidates/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> delete(@PathVariable("id") String id) {
+    public void delete(@PathVariable("id") String id) {
         candidateRepository.deleteById(Long.parseLong(id));
-        return new ResponseEntity<Object>("candidate is updated successsfully", HttpStatus.OK);
     }
 
 //    aici sunt testele pentru servicuil. mapl ala putea sa fie static, dar repositoryul meu nu merge sa fie static. nu se fac injectii, auowired statice
