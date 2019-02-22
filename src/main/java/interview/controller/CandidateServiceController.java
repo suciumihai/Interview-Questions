@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//addign crossorigin requests to deploy the AngularJS front-end application separately than the REST API
 //RESTful web services. It serves JSON, XML and custom response. This is the interview.controller class file that contains GET, POST, PUT methods REST Endpoint
+@CrossOrigin
 @RestController
 public class CandidateServiceController {
 
@@ -28,10 +30,12 @@ public class CandidateServiceController {
 
     @RequestMapping(value = "/candidates/{id}", method = RequestMethod.PUT)
     public Candidate updateCandidate(@PathVariable("id") String id, @RequestBody Candidate candidate){
+        ////teorietci aici porneste tranzactie business, caci proxyl vede ca ii va trebui o tranzactie cu baza de date
         candidateRepository.deleteById(Long.parseLong(id));
         candidate.setId(Long.parseLong(id));
         candidateRepository.save(candidate);
         return candidate;
+        //// teoretci aici vede daca toate tranzactiile cu baza de date au focatu comit ok, si atunci se termina si busines sranzaction
     }
 
     @RequestMapping(value = "/candidates/{id}", method = RequestMethod.DELETE)
