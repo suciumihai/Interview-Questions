@@ -12,7 +12,7 @@ import javax.validation.constraints.Email;
 public class Candidate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)//daca comentez asta, las sa vina id manual. altfel, indiferent ce bag e, el decide la final
+    //@GeneratedValue(strategy = GenerationType.AUTO)//daca comentez asta, las sa vina id manual. altfel, indiferent ce bag e, el decide la final
     private Long id;
 
     private String name;

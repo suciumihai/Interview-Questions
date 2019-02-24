@@ -27,6 +27,7 @@ public class InMemoryDBIntegrationTest {
     public void givenCandidate_whenSave_thenGetOk() {
         Candidate candidate1 = new Candidate();
         candidate1.setName(NAME);
+        candidate1.setId(ID);
         //aici cu save l-am pus pe hibernate sa persiste
         candidateRepository.save(candidate1);
 
