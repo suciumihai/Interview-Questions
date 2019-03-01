@@ -11,7 +11,7 @@ import java.util.List;
 
 //addign crossorigin requests to deploy the AngularJS front-end application separately than the REST API
 //RESTful web services. It serves JSON, XML and custom response. This is the interview.controller class file that contains GET, POST, PUT methods REST Endpoint
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class CandidateServiceController {
 
@@ -20,6 +20,12 @@ public class CandidateServiceController {
 
     @RequestMapping(value = "/candidates")
     public List<Candidate> getCandidates(){
+        Candidate candidate = new Candidate();
+        candidate.setName("ion");
+        candidate.setSurName("maria");
+        candidate.setEmail("ion.maria@pix.com");
+        candidate.setPhone("1234123123");
+        candidateRepository.save(candidate);
         return candidateRepository.findAll();
     }
 
