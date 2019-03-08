@@ -18,14 +18,14 @@ public class CandidateServiceController {
     @Autowired
     private CandidateRepository candidateRepository;
 
-    @RequestMapping(value = "/candidates")
+    @RequestMapping(value = "/candidates") //default e get
     public List<Candidate> getCandidates(){
-        Candidate candidate = new Candidate();
-        candidate.setName("ion");
-        candidate.setSurName("maria");
-        candidate.setEmail("ion.maria@pix.com");
-        candidate.setPhone("1234123123");
-        candidateRepository.save(candidate);
+//        Candidate candidate = new Candidate();
+//        candidate.setName("ion");
+//        candidate.setSurName("maria");
+//        candidate.setEmail("ion.maria@pix.com");
+//        candidate.setPhone("1234123123");
+//        candidateRepository.save(candidate);
         return candidateRepository.findAll();
     }
 
