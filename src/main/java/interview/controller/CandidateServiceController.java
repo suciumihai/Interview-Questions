@@ -29,6 +29,11 @@ public class CandidateServiceController {
         return candidateRepository.findAll();
     }
 
+    @RequestMapping(value="/candidates/{id}")
+    public Candidate getCandidateById(@PathVariable("id") String id) {
+        return candidateRepository.getOne(Long.parseLong(id));
+    }
+
     @RequestMapping(value = "/candidates", method = RequestMethod.POST)
     public Candidate createCandidate(@RequestBody Candidate candidate){
         return candidateRepository.save(candidate);

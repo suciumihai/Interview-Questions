@@ -77,3 +77,12 @@ package.json - It contains all the dependencies defined for the angular project.
 karma.conf.json - Config file for karma unit tests.
 
 The file .angular-cli.json will have all the application configurations such as info about the root and out directory.The welcome or main html file along with the main ts file. All the other environment related information will be present here.
+
+---------
+
+pentru put: tre verificata 
+butonul din candidate component html si candidate component ts, daca ma timite corect cu idul sau cu candidatul la edit candidate html
+
+in edit cnadidate html, daca modelul dispaliete corect, in componnent ts daca apelez serviciul de arataare si editare corect
+
+in candidate service ts daca folosest metoda updateCandi corect 
