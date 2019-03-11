@@ -107,6 +107,13 @@
             <version>4.3.7.RELEASE</version>
         </dependency>
 
+        <!-- lazy loading -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.8</version>
+        </dependency>
+
         <!-- fiindca am mizeria aia de joran ex; din cand in cand tre sa mai dai mvn dependency:purge-local-repository -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
