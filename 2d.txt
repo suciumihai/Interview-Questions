@@ -41,12 +41,16 @@ ca sa te joci cu post
 
 -----
 
-angular
+angular 5
 https://www.devglan.com/spring-boot/spring-boot-angular-example
 
 ai facut install node js; adaugat npm la path
 npm install -g @angular/cli
 ng new portal-app
+
+mai tre ng generate component user (sau candidate, ce vrei).
+daca dai in balarii, Specify the module using the --module parameter. For example, if the main module is app.module.ts, run this:
+ng g c new-component --module app, sau ng generate component user --module app
 
 aranjat poutin application.properties cu server.contextPath=/user-portal
 
@@ -64,7 +68,7 @@ npm start (poate ng serve peste java rest pornit)
 
 (sau ake sure to change the userUrl value to '/api' in user.service.ts file and comment @CrossOrigin in UserController.java.Once this done use ng serve --proxy-config proxy.config.json or npm start to start the angular app.)
 
-
+---------
 
 Modules - Modules break up the application into logical pieces of code. Each piece of code or module is designed to perform a single task.All the modules are loaded by main.ts.
 

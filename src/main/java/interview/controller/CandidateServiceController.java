@@ -31,8 +31,12 @@ public class CandidateServiceController {
 
     @RequestMapping(value="/candidates/{id}")
     public Candidate getCandidateById(@PathVariable("id") String id) {
-        return candidateRepository.getOne(Long.parseLong(id));
+        return candidateRepository.findById(Long.valueOf(id)).get();
+        //eu am un rest controller. care iti spune ca la urul asta cheama metoda, si daca ai obiect bun serializeaza.
+        //da inaitea lui, e un listener/ controller din spring, facade, care primeste cererea de la angular, in caul meu, el decide ce controler foloseste de la mine, el decide ce librarie de json serilizare foloseste, etc
     }
+
+
 
     @RequestMapping(value = "/candidates", method = RequestMethod.POST)
     public Candidate createCandidate(@RequestBody Candidate candidate){
@@ -50,7 +54,7 @@ public class CandidateServiceController {
     }
 
     @RequestMapping(value = "/candidates/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") String id) {
+    public void deleteCandidate(@PathVariable("id") String id) {
         candidateRepository.deleteById(Long.parseLong(id));
     }
 
