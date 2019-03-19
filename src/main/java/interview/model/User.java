@@ -3,7 +3,7 @@ package interview.model;
 import interview.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Email;
+import javax.validation.constraints.Email;
 
 import javax.persistence.*;
 
@@ -23,6 +23,9 @@ public class User {
 
     private String password;
 
-    private Role role;
+    //@Enumerated(EnumType.STRING)
+    //private Role role;
+    //prea compli sa fac enums in angular, raman la string :((
 
+    private String role;
 }

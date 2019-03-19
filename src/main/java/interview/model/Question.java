@@ -23,9 +23,13 @@ public class Question {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    private Dificulty dificulty;
+    //private Dificulty difficulty;
 
-    private Type type;
+    //private Type type;
+
+    private String type;
+
+    private String difficulty;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

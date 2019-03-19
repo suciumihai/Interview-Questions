@@ -20,9 +20,7 @@ public class UserServiceController {
     }
 
     @RequestMapping(value="/users/{id}")
-    public User getUserById(@PathVariable("id") String id){
-        return userRepository.getOne(Long.parseLong(id));
-    }
+    public User getUserById(@PathVariable("id") String id){ return userRepository.findById(Long.valueOf(id)).get(); }
 
     @RequestMapping(value="/users", method = RequestMethod.POST)
     public User createUser(@RequestBody User user){
