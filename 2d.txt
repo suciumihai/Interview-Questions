@@ -29,7 +29,7 @@ first un test simplu, fara bd,
 apoi untest pe bd
 
 
-ca sa te joci cu post
+ca sa te joci cu postman, e local host 8080; la angluar e 4200
 
 {
 	"id": 10,
