@@ -17,9 +17,10 @@ public class Answer {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    private  String text;
+    private String text;
 
-    private boolean value;
+    private String value;
+    /* true or false */
 
     @ManyToOne
     @JoinColumn(name = "question_id")

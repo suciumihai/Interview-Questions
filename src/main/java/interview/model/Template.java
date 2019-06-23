@@ -24,7 +24,7 @@ public class Template {
     private List<CategoryTemplate> categoryTemplates = new ArrayList<CategoryTemplate>();
 
     @Column(nullable = false, name = "duration")
-    private int duration = 1;
+    private String duration = "1";
     // primitive e bine not null, cu def value
 
     //@OneToMany(mappedBy = "template")
