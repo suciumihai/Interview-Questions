@@ -18,20 +18,20 @@ public class TestServiceController {
     @Autowired
     private TestRepository repo;
 
-    @RequestMapping(value="/templates")
+    @RequestMapping(value="/tests")
     public List<Test> get(){
         return repo.findAll();
     }
 
-    @RequestMapping(value="/templates/{id}")
+    @RequestMapping(value="/tests/{id}")
     public Test getById(@PathVariable("id") String id){ return repo.findById(Long.valueOf(id)).get(); }
 
-    @RequestMapping(value="/templates", method = RequestMethod.POST)
+    @RequestMapping(value="/tests", method = RequestMethod.POST)
     public Test create(@RequestBody Test body){
         return repo.save(body);
     }
 
-    @RequestMapping(value="/templates/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/tests/{id}", method = RequestMethod.PUT)
     public Test update(@PathVariable("id") String id, @RequestBody Test body){
         repo.deleteById(Long.parseLong(id));
         body.setId(Long.parseLong(id));
@@ -39,7 +39,7 @@ public class TestServiceController {
         return body;
     }
 
-    @RequestMapping(value="/templates/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/tests/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id){
         repo.deleteById(Long.parseLong(id));
     }

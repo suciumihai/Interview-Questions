@@ -16,20 +16,20 @@ public class QuestionServiceController {
     @Autowired
     private QuestionRepository repo;
 
-    @RequestMapping(value="/templates")
+    @RequestMapping(value="/questions")
     public List<Question> get(){
         return repo.findAll();
     }
 
-    @RequestMapping(value="/templates/{id}")
+    @RequestMapping(value="/questions/{id}")
     public Question getById(@PathVariable("id") String id){ return repo.findById(Long.valueOf(id)).get(); }
 
-    @RequestMapping(value="/templates", method = RequestMethod.POST)
+    @RequestMapping(value="/questions", method = RequestMethod.POST)
     public Question create(@RequestBody Question body){
         return repo.save(body);
     }
 
-    @RequestMapping(value="/templates/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/questions/{id}", method = RequestMethod.PUT)
     public Question update(@PathVariable("id") String id, @RequestBody Question body){
         repo.deleteById(Long.parseLong(id));
         body.setId(Long.parseLong(id));
@@ -37,7 +37,7 @@ public class QuestionServiceController {
         return body;
     }
 
-    @RequestMapping(value="/templates/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/questions/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id){
         repo.deleteById(Long.parseLong(id));
     }
