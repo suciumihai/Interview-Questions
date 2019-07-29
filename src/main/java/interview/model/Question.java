@@ -37,7 +37,11 @@ public class Question {
 
     private String content;
 
-    @OneToMany(mappedBy = "question")
-    private List<Answer> answers = new ArrayList<Answer>();
+    private ArrayList<String> correctAnswers;
 
+    private ArrayList<String> selectedAnswers;
+
+//    @OneToMany(mappedBy = "question")
+//    private List<Answer> answers = new ArrayList<Answer>();
+//    temporary decided not to use answer as a string in question
 }

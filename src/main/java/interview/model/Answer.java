@@ -22,8 +22,9 @@ public class Answer {
     private String value;
     /* true or false */
 
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    private Question question;
+//    @ManyToOne
+//    @JoinColumn(name = "question_id")
+//    private Question question;
+//    temporary inserting asnwer in question as a string
 
 }
