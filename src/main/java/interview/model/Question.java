@@ -37,6 +37,8 @@ public class Question {
 
     private String content;
 
+    private ArrayList<String> possibleAnswers;
+
     private ArrayList<String> correctAnswers;
 
     private ArrayList<String> selectedAnswers;
