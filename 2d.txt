@@ -84,6 +84,13 @@ The file .angular-cli.json will have all the application configurations such as 
 
 ---------
 
+
+
 http://localhost:4200/candidates
 
 ca s adaug mai multi, am editat in app.module.ts si provides: , si @ngModule declaraitons, et
+
+-------
+
+0. creezi/editezi in user user.component.html - html,  service.ts - ca sa face legatura intre cei ai iaci si pe db si el spunce ca url e /users, component.ts - pentru butoane din html ; apoi add-user, etc
+1. add your rouerLink=/users sau addUsers etc, in app.component.html (plus, ce alte pagini mai vrei)
