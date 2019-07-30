@@ -94,3 +94,4 @@ ca s adaug mai multi, am editat in app.module.ts si provides: , si @ngModule dec
 
 0. creezi/editezi in user user.component.html - html,  service.ts - ca sa face legatura intre cei ai iaci si pe db si el spunce ca url e /users, component.ts - pentru butoane din html ; apoi add-user, etc
 1. add your rouerLink=/users sau addUsers etc, in app.component.html (plus, ce alte pagini mai vrei)
+2. adaugi componenta in app.routin.module.rs, apoi in app.module.ts in path, si serviciul in providers 

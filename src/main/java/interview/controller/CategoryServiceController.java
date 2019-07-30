@@ -37,7 +37,7 @@ public class CategoryServiceController {
         return category;
     }
 
-    @RequestMapping(value="/templates/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/categories/{id}", method = RequestMethod.DELETE)
     public void deleteCategory(@PathVariable("id") String id){
         categoryRepository.deleteById(Long.parseLong(id));
     }
