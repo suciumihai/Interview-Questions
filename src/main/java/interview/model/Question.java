@@ -27,21 +27,27 @@ public class Question {
 
     //private Type type;
 
-    private String type;
-
     private String difficulty;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    // daca am scos lista de questions din category, nu tre neaparat sa scot si cat din question
+
+    @ManyToOne
+    @JoinColumn(name = "template_id")
+    private Template template;
 
     private String content;
 
-    private ArrayList<String> possibleAnswers;
+    @ElementCollection(targetClass = String.class)
+    private List<String> possibleAnswers;
 
-    private ArrayList<String> correctAnswers;
+    @ElementCollection(targetClass = String.class)
+    private List<String> correctAnswers;
 
-    private ArrayList<String> selectedAnswers;
+    @ElementCollection(targetClass = String.class)
+    private List<String> selectedAnswers;
 
 //    @OneToMany(mappedBy = "question")
 //    private List<Answer> answers = new ArrayList<Answer>();

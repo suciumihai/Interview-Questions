@@ -29,6 +29,8 @@ public class Test {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
+    String nota;
+
     //sarim versionare, for now...
     //@OneToMany(mappedBy = "test")
     //private List<TestQuestion> testQuestions=new ArrayList<TestQuestion>();

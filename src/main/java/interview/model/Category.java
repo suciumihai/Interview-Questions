@@ -19,8 +19,9 @@ public class Category {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Question> questions = new ArrayList<Question>();
+//    @OneToMany(mappedBy = "category")
+//    private List<Question> questions = new ArrayList<Question>();
+    //hai sa nu puem lista de quesitions in category 4 now, let's move it in template
 
     // aici tratam o FK catre el, ca parinte
     // fiind lazy jpa lista automat, dar nu e cam in tabel. il incarca din bd, doar de pe primu nivel

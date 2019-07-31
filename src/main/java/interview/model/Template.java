@@ -24,8 +24,12 @@ public class Template {
     private List<CategoryTemplate> categoryTemplates = new ArrayList<CategoryTemplate>();
 
     @Column(nullable = false, name = "duration")
-    private String duration = "1";
+    private String duration = "one minute";
     // primitive e bine not null, cu def value
+
+    @OneToMany(targetEntity = Question.class, mappedBy = "template", fetch=FetchType.EAGER)
+    private List<Question> questions = new ArrayList<>();
+    //in loc de category, am decis sa am lista de questions in template
 
     //@OneToMany(mappedBy = "template")
     //private ArrayList<Test> tests;
