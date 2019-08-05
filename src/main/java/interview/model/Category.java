@@ -32,9 +32,9 @@ public class Category {
 
     @OneToMany(mappedBy = "parent")
     private List<Category> children=new ArrayList<Category>();
-
-    @OneToMany(mappedBy = "category")
-    private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
+//    imi da balarii mari daca las lista aici...
+//    @OneToMany(mappedBy = "category")
+//    private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
 
     //sarim versionare for now
     //@OneToMany(mappedBy = "category")
