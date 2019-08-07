@@ -35,11 +35,11 @@ public class InMemoryDBIntegrationTest {
     public void givenCandidate_whenSave_thenGetOk() {
         Candidate candidate1 = new Candidate();
         candidate1.setName(NAME);
-        candidate1.setId(ID);
+        //candidate1.setId(ID);
         //aici cu save l-am pus pe hibernate sa persiste
         candidateRepository.save(candidate1);
 
-        Candidate candidate2 = candidateRepository.getOne(ID);
+        Candidate candidate2 = candidateRepository.getOne(candidate1.getId());
 
         assertEquals("name incorrect", NAME, candidate2.getName());
     }
@@ -51,14 +51,13 @@ public class InMemoryDBIntegrationTest {
         categoryRepository.save(java);
 
         Question question1 = new Question();
-        question1.setId(ID);
         question1.setName("q1");
         question1.setDifficulty("Easy");
         question1.setContent("este java OOP?");
         question1.setCategory(java);
         questionRepository.save(question1);
 
-        assertEquals("java", questionRepository.findById(Long.valueOf(ID)).get().getCategory().getName());
+        assertEquals("Java", questionRepository.findById(Long.valueOf(question1.getId())).get().getCategory().getName());
     }
 
 }
