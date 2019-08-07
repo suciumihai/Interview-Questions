@@ -25,6 +25,6 @@ public class CategoryTemplate {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    int questionNumber = 1;
+    int questionNumber = 0;
 
 }

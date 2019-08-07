@@ -7,6 +7,7 @@ import interview.model.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -41,4 +42,17 @@ public class CategoryServiceController {
     public void deleteCategory(@PathVariable("id") String id){
         categoryRepository.deleteById(Long.parseLong(id));
     }
+
+
+
+
+    @RequestMapping("/categoryNames")
+    private List<String> getCategoryNames(){
+        List<String> res = new ArrayList<>();
+        for (Category c : categoryRepository.findAll()){
+            res.add(c.getName());
+        }
+        return res;
+    }
+
 }

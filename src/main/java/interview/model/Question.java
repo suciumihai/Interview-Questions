@@ -27,7 +27,9 @@ public class Question {
 
     //private Type type;
 
+    @Column
     private String difficulty;
+    //Easy, Medium, Hard
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -38,6 +40,7 @@ public class Question {
     @JoinColumn(name = "template_id")
     private Template template;
 
+    @Column
     private String content;
 
     @ElementCollection(targetClass = String.class)

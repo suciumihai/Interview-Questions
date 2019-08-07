@@ -41,5 +41,12 @@ public class QuestionServiceController {
     public void delete(@PathVariable("id") String id){
         repo.deleteById(Long.parseLong(id));
     }
+
+
+
+    @RequestMapping(value="/questCatName/{id}")
+    public String getQuestCatNameById(@PathVariable("id") String id) {
+        return repo.findById(Long.valueOf(id)).get().getCategory().getName();
+    }
 }
 

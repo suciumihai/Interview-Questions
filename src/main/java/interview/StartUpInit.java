@@ -166,5 +166,7 @@ public class StartUpInit {
         test1.setNota("100");
         testRepository.save(test1);
 
+        System.out.println();
+
     }
 }
