@@ -3,6 +3,7 @@ package interview.model;
 import interview.enums.Dificulty;
 import interview.enums.Type;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
+@NoArgsConstructor
 public class Question {
 
     @Id
@@ -31,6 +33,7 @@ public class Question {
     private String difficulty;
     //Easy, Medium, Hard
 
+    //fetch type eager by default
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

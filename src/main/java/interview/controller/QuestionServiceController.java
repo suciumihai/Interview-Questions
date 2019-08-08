@@ -43,7 +43,7 @@ public class QuestionServiceController {
     }
 
 
-
+    //not necessary for now
     @RequestMapping(value="/questCatName/{id}")
     public String getQuestCatNameById(@PathVariable("id") String id) {
         return repo.findById(Long.valueOf(id)).get().getCategory().getName();

@@ -1,15 +1,18 @@
 package interview.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//aparent jackson are nevoie de no args constructor
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -32,6 +35,7 @@ public class Category {
 
     @OneToMany(mappedBy = "parent")
     private List<Category> children=new ArrayList<Category>();
+
 //    imi da balarii mari daca las lista aici...
 //    @OneToMany(mappedBy = "category")
 //    private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
