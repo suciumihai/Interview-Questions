@@ -22,11 +22,11 @@ public class Template {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "template")
+    @OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template", fetch=FetchType.LAZY)
     private List<CategoryTemplate> categoryTemplates = new ArrayList<CategoryTemplate>();
 
-    @Column(nullable = false, name = "duration")
-    private String duration = "one minute";
+    //@Column(nullable = false, name = "duration")
+    //private String duration = "one minute";
     // primitive e bine not null, cu def value
 
     @OneToMany(targetEntity = Question.class, mappedBy = "template", fetch=FetchType.EAGER)

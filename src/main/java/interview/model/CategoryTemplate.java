@@ -22,11 +22,13 @@ public class CategoryTemplate {
     @ManyToOne
     @JoinColumn(name = "template_id")
     private Template template;
+    //chair daca asta nu o sa il arat in html, tot tre sa existe, ca asa mearga lista din template
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @Column
     int questionNumber = 0;
 
 }

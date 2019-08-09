@@ -132,7 +132,9 @@ public class StartUpInit {
         catTemplates.add(TwoEasyJava);
 
         Template ionTwoEasyJavaOneMedSql = new Template();
-        ionTwoEasyJavaOneMedSql.setDuration("ten minutes");
+        //ionTwoEasyJavaOneMedSql.setDuration("ten minutes");
+        //ionTwoEasyJavaOneMedSql.getCategoryTemplates().add(OneMedSql);
+        //ionTwoEasyJavaOneMedSql.getCategoryTemplates().add(TwoEasyJava);
         ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTemplates);
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
 

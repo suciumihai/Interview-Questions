@@ -45,7 +45,7 @@ public class CategoryServiceController {
 
 
 
-
+    //not used for now
     @RequestMapping("/categoryNames")
     private List<String> getCategoryNames(){
         List<String> res = new ArrayList<>();
