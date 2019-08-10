@@ -118,12 +118,14 @@ public class StartUpInit {
         TwoEasyJava.setName("2 easy java");
         TwoEasyJava.setCategory(java);
         TwoEasyJava.setQuestionNumber(2);
+        TwoEasyJava.setDifficulty("Easy");
         categoryTemplateRepository.save(TwoEasyJava);
 
         CategoryTemplate OneMedSql = new CategoryTemplate();
         OneMedSql.setName("1 med sql");
         OneMedSql.setCategory(sql);
         OneMedSql.setQuestionNumber(1);
+        OneMedSql.setDifficulty("Medium");
         categoryTemplateRepository.save(OneMedSql);
 
         //now we can make a template

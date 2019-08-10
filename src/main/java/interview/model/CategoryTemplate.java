@@ -31,4 +31,8 @@ public class CategoryTemplate {
     @Column
     int questionNumber = 0;
 
+    @Column
+    private String difficulty;
+    //ar cam trebui sa rezolv cu difficulty asta, ca e in 2 viewuri deja. ar trebui sa fie ca la category, si sa fie subcategorii., gen eay java, etc
+
 }

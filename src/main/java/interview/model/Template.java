@@ -1,5 +1,6 @@
 package interview.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Template {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     @OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template", fetch=FetchType.LAZY)
     private List<CategoryTemplate> categoryTemplates = new ArrayList<CategoryTemplate>();
 
