@@ -130,3 +130,13 @@ $.each(customers, function(index, data) {
                 $('#customers').append(data.firstName);
 });
 --------------
+baledung
+https://www.baeldung.com/spring-rest-template-list
+he RestTemplate class is the central tool for performing client-side HTTP operations in Spring.
+RestTemplate integrates well with Jackson, it can serialize/deserialize most objects to and from JSON 
+
+---------
+
+https://www.baeldung.com/rest-with-spring-series
+https://lankydan.dev/2017/03/11/passing-data-transfer-objects-with-get-in-spring-boot
+https://www.leveluplunch.com/java/tutorials/014-post-json-to-spring-rest-webservice/
