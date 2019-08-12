@@ -114,3 +114,19 @@ ngSubmit: This is the event that will be triggered upon submission of the form.
 formControlName: Each form field should have a formControlName directive with a value that will be the name used in the component class
 
 la componenta.ts ii bag implements implements OnInit;
+
+
+-------
+intre api uri se plimba jsonuri; json uses key value pair:"firstName":"Paul", "firstName":"Jennifer", etc;
+json object {"firstName":"John", "lastName":"Smith"} etc
+array ofjsonobjects:
+"customers":[
+    {"firstName":"Jason", "lastName":"Smith"},  {"firstName":"Joan", "lastName":"Smith"} ].
+
+json string poate avea utel aarays: "customers":[{},{}],"orders":[{},{}] etc
+iei valroi cu alert(customers[0].firstName + “ “ + customers.[0].lastName );
+Jquery to loops, and prints the results to an HTML div element named “customers”:
+$.each(customers, function(index, data) {
+                $('#customers').append(data.firstName);
+});
+--------------

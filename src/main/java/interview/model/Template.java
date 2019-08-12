@@ -24,14 +24,14 @@ public class Template {
     private String name;
 
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    @OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template", fetch=FetchType.LAZY)
+    @OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template")
     private List<CategoryTemplate> categoryTemplates = new ArrayList<CategoryTemplate>();
 
     //@Column(nullable = false, name = "duration")
     //private String duration = "one minute";
     // primitive e bine not null, cu def value
 
-    @OneToMany(targetEntity = Question.class, mappedBy = "template", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Question.class, mappedBy = "template")
     private List<Question> questions = new ArrayList<>();
     //in loc de category, am decis sa am lista de questions in template
 

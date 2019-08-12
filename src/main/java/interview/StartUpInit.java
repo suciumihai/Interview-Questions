@@ -62,6 +62,7 @@ public class StartUpInit {
         List<String> q1CorAns = new ArrayList<>();
         List<String> q1PosAns = new ArrayList<>();
         q1CorAns.add("Da");
+
         q1PosAns.add("Da");
         q1PosAns.add("Nu");
         q1PosAns.add("Poate");
