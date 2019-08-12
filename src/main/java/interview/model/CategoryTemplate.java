@@ -5,12 +5,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
-public class CategoryTemplate {
+public class CategoryTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
