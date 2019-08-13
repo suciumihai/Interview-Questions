@@ -1,15 +1,21 @@
 package interview;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import interview.dao.*;
 import interview.model.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Slf4j
 public class StartUpInit {
 
     @Autowired
@@ -29,7 +35,7 @@ public class StartUpInit {
 
     //PostConstruct defines a method as initialization method of a spring bean which runs after dependency injection is completed
     @PostConstruct
-    public void init() {
+    public void init() throws IOException {
 
         Candidate ion = new Candidate();
         ion.setName("Ion Gheorghe");
@@ -135,11 +141,16 @@ public class StartUpInit {
         catTemplates.add(TwoEasyJava);
 
         Template ionTwoEasyJavaOneMedSql = new Template();
-        //ionTwoEasyJavaOneMedSql.setDuration("ten minutes");
-        //ionTwoEasyJavaOneMedSql.getCategoryTemplates().add(OneMedSql);
-        //ionTwoEasyJavaOneMedSql.getCategoryTemplates().add(TwoEasyJava);
-        ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTemplates);
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonArray = mapper.writeValueAsString(catTemplates);
+
+        List<CategoryTemplate> asList = mapper.readValue(
+                jsonArray, new TypeReference<List<CategoryTemplate>>() { });
+
+        ionTwoEasyJavaOneMedSql.setCategoryTemplates(asList);
+        //ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTemplates);
 
         //in this template, we, or a service, should create a list of questions
         List<Question> templateQuestions = new ArrayList<>();

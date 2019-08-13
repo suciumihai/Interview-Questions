@@ -1,7 +1,12 @@
 package interview.dao;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import interview.config.JpaConfig;
 import interview.model.*;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {JpaConfig.class})
@@ -158,5 +166,41 @@ public class InMemoryDBIntegrationTest {
         assertEquals("q1", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().get(0).getName());
         assertEquals("SQL", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(0).getCategory().getName());
         assertEquals("Java", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(1).getCategory().getName());
+    }
+
+    @Test
+    public void givenJsonArray_whenDeserializingAsListWithTypeReferenceHelp_thenCorrect()
+            throws JsonParseException, JsonMappingException, IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        Category java = new Category();
+        java.setName("Java");
+        categoryRepository.save(java);
+
+        Category sql = new Category();
+        sql.setName("SQL");
+        categoryRepository.save(sql);
+
+        CategoryTemplate TwoEasyJava = new CategoryTemplate();
+        TwoEasyJava.setName("2 easy java");
+        TwoEasyJava.setCategory(java);
+        TwoEasyJava.setQuestionNumber(2);
+        TwoEasyJava.setDifficulty("Easy");
+        categoryTemplateRepository.save(TwoEasyJava);
+
+        CategoryTemplate OneMedSql = new CategoryTemplate();
+        OneMedSql.setName("1 med sql");
+        OneMedSql.setCategory(sql);
+        OneMedSql.setQuestionNumber(1);
+        OneMedSql.setDifficulty("Medium");
+        categoryTemplateRepository.save(OneMedSql);
+
+        List<CategoryTemplate> listOfCategoryTemplates = Lists.newArrayList(OneMedSql, TwoEasyJava);
+        String jsonArray = mapper.writeValueAsString(listOfCategoryTemplates);
+
+        List<CategoryTemplate> asList = mapper.readValue(
+                jsonArray, new TypeReference<List<CategoryTemplate>>() { });
+        assertThat(asList.get(0), instanceOf(CategoryTemplate.class));
     }
 }

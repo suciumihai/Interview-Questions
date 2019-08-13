@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @NoArgsConstructor
-public class CategoryTemplate implements Serializable {
+public class CategoryTemplate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

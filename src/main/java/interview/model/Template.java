@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Template implements Serializable {
+public class Template {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,9 +24,10 @@ public class Template implements Serializable {
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
+    //@JsonFormat(with = JsonFormat.Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     @OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template")
-    private List<CategoryTemplate> categoryTemplates = new ArrayList<CategoryTemplate>();
+    private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
 
     //@Column(nullable = false, name = "duration")
     //private String duration = "one minute";
