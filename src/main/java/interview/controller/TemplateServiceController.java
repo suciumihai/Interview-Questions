@@ -3,6 +3,8 @@ package interview.controller;
 import interview.dao.TemplateRepository;
 import interview.model.Template;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,12 @@ public class TemplateServiceController {
     @RequestMapping(value="/templates")
     public List<Template> getTemplates(){
         return templateRepository.findAll();
+    }
+
+    //hai sa vedem diferenta intre response entiti si list
+    @RequestMapping(value = "/getTemplateRespEnitty")
+    public ResponseEntity<List<Template>> get() {
+        return new ResponseEntity<List<Template>>(templateRepository.findAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value="/templates/{id}")

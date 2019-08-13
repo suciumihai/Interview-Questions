@@ -129,6 +129,8 @@ Jquery to loops, and prints the results to an HTML div element named “customers”
 $.each(customers, function(index, data) {
                 $('#customers').append(data.firstName);
 });
+
+mapping jackson 2 message converter e folosit d spring
 --------------
 baledung
 https://www.baeldung.com/spring-rest-template-list
