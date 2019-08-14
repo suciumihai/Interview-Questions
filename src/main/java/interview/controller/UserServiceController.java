@@ -3,12 +3,14 @@ package interview.controller;
 import interview.dao.UserRepository;
 import interview.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
+@Transactional
 public class UserServiceController {
 
     @Autowired

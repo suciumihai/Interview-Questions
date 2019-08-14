@@ -5,6 +5,7 @@ import interview.model.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 //RESTful web services. It serves JSON, XML and custom response. This is the interview.controller class file that contains GET, POST, PUT methods REST Endpoint
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
+@Transactional
 public class CandidateServiceController {
 
     @Autowired

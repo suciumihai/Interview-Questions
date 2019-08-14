@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import interview.dao.*;
 import interview.model.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -160,6 +161,10 @@ public class StartUpInit {
         templateQuestions.add(question3);
         ionTwoEasyJavaOneMedSql.setQuestions(templateQuestions);
         templateRepository.save(ionTwoEasyJavaOneMedSql);
+
+        Hibernate.initialize(ionTwoEasyJavaOneMedSql.getCategoryTemplates());
+        int forceLoad = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size();
+        System.out.println(forceLoad);
 
         //ordinea ar fi intri, dai new test, el asocieaza ar trebui sa dea new template, si template
         Test test1 = new Test();

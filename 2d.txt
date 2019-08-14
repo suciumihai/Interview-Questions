@@ -142,3 +142,16 @@ RestTemplate integrates well with Jackson, it can serialize/deserialize most obj
 https://www.baeldung.com/rest-with-spring-series
 https://lankydan.dev/2017/03/11/passing-data-transfer-objects-with-get-in-spring-boot
 https://www.leveluplunch.com/java/tutorials/014-post-json-to-spring-rest-webservice/
+
+--------
+
+bagat 
+Hibernate.initialize(ionTwoEasyJavaOneMedSql.getCategoryTemplates());
+int forceLoad = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size();
+        System.out.println(forceLoad);
+la startup init. DAR imi da cu lazy error, 
+.
+
+de ce la tests merege????
+lol am facut totu transactional
+-0------
