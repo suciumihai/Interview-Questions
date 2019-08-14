@@ -12,7 +12,6 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@Transactional
 public class TemplateServiceController {
 
     @Autowired
@@ -22,6 +21,10 @@ public class TemplateServiceController {
     public List<Template> getTemplates(){
         return templateRepository.findAll();
     }
+    //difference between session.get() vs session.load method is that get() involves database hit if object doesn't exists in Session
+    // Cache and returns a fully initialized object which may involve several database call while load method can return
+    // proxy in place and only initialize the object or hit the database if any method other than getId() is called on
+    // persistent or entity object. This lazy initialization can save couple of database round-trip which result in better performance.
 
     //hai sa vedem diferenta intre response entiti si list
     @RequestMapping(value = "/getTemplateRespEnitty")

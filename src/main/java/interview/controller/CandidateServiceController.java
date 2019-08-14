@@ -14,7 +14,6 @@ import java.util.List;
 //RESTful web services. It serves JSON, XML and custom response. This is the interview.controller class file that contains GET, POST, PUT methods REST Endpoint
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@Transactional
 public class CandidateServiceController {
 
     @Autowired
