@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @NoArgsConstructor
-public class CategoryTemplate implements Serializable{
+public class CategoryTemplate implements Comparable<CategoryTemplate>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +35,11 @@ public class CategoryTemplate implements Serializable{
 
     @Column
     private String difficulty;
+
+    @Override
+    public int compareTo(CategoryTemplate o) {
+        return ((this.name).compareTo(o.getName()));
+    }
     //ar cam trebui sa rezolv cu difficulty asta, ca e in 2 viewuri deja. ar trebui sa fie ca la category, si sa fie subcategorii., gen eay java, etc
 
 }

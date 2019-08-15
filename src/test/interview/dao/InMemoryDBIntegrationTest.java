@@ -16,12 +16,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.transaction.Transactional;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import static org.hamcrest.Matchers.instanceOf;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {JpaConfig.class})
@@ -149,9 +147,10 @@ public class InMemoryDBIntegrationTest {
         List<CategoryTemplate> catTemplates = new ArrayList<>();
         catTemplates.add(OneMedSql);
         catTemplates.add(TwoEasyJava);
+        Set<CategoryTemplate> catTempl = new HashSet<>(catTemplates);
 
         Template ionTwoEasyJavaOneMedSql = new Template();
-        ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTemplates);
+        ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTempl);
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
 
         //in this template, we, or a service, should create a list of questions
@@ -160,12 +159,19 @@ public class InMemoryDBIntegrationTest {
         templateQuestions.add(question1);
         templateQuestions.add(question2);
         templateQuestions.add(question3);
-        ionTwoEasyJavaOneMedSql.setQuestions(templateQuestions);
+
+        Set<Question> tempQuest = new HashSet<>(templateQuestions);
+        ionTwoEasyJavaOneMedSql.setQuestions(tempQuest);
         templateRepository.save(ionTwoEasyJavaOneMedSql);
 
-        assertEquals("q1", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().get(0).getName());
-        assertEquals("SQL", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(0).getCategory().getName());
-        assertEquals("Java", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(1).getCategory().getName());
+//        assertEquals("q1", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().get(0).getName());
+//        assertEquals("SQL", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(0).getCategory().getName());
+
+        //e greu sa testezi asa, caci HashSet nu iti garanteaza ordinea
+        assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getName()).isIn("1 med sql", "2 easy java");
+        assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getCategory().getName()).isIn("Java", "SQL");
+        assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().stream().findFirst().get().getName()).isIn("q1", "q2", "q3", "q4");
+
     }
 
     @Test
@@ -201,6 +207,7 @@ public class InMemoryDBIntegrationTest {
 
         List<CategoryTemplate> asList = mapper.readValue(
                 jsonArray, new TypeReference<List<CategoryTemplate>>() { });
-        assertThat(asList.get(0), instanceOf(CategoryTemplate.class));
+       //assertThat(asList.get(0), instanceOf(CategoryTemplate.class));
+       assertEquals(asList.get(0).getName(), OneMedSql.getName());
     }
 }

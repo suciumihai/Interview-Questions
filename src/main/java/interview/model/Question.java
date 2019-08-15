@@ -5,6 +5,7 @@ import interview.enums.Type;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Question {
+public class Question implements Comparable<Question>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,6 +55,11 @@ public class Question {
 
     @ElementCollection(targetClass = String.class)
     private List<String> selectedAnswers;
+
+    @Override
+    public int compareTo(Question question) {
+        return (this.name.compareTo(question.getName()));
+    }
 
 //    @OneToMany(mappedBy = "question")
 //    private List<Answer> answers = new ArrayList<Answer>();

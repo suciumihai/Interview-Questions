@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+
 import org.h2.tools.Server;
 
 @Component
@@ -73,6 +73,7 @@ public class StartUpInit {
 
         List<String> q1CorAns = new ArrayList<>();
         List<String> q1PosAns = new ArrayList<>();
+
         q1CorAns.add("Da");
 
         q1PosAns.add("Da");
@@ -115,18 +116,7 @@ public class StartUpInit {
         question4.setCategory(sql);
         questionRepository.save(question4);
 
-        //now that we have questions, add them to categories, if we want to keep a list of questions in category
-//        List<Question> cat1Questions = new ArrayList<>();
-//        cat1Questions.add(question1);
-//        cat1Questions.add(question2);
-//        java.setQuestions(cat1Questions);
-//
-//        List<Question> cat2Questions = new ArrayList<>();
-//        cat2Questions.add(question3);
-//        cat2Questions.add(question4);
-//        sql.setQuestions(cat2Questions);
-
-        //now that we have questions, we cam make a template
+        //now that we have questions, we cam make a cat template
         CategoryTemplate TwoEasyJava = new CategoryTemplate();
         TwoEasyJava.setName("2 easy java");
         TwoEasyJava.setCategory(java);
@@ -145,10 +135,12 @@ public class StartUpInit {
         List<CategoryTemplate> catTemplates = new ArrayList<>();
         catTemplates.add(OneMedSql);
         catTemplates.add(TwoEasyJava);
+        Set<CategoryTemplate> catTempl = new HashSet<>(catTemplates);
+        //daca vreau sa le sortez imi trebuie treeSet
 
         Template ionTwoEasyJavaOneMedSql = new Template();
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
-
+        ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTempl);
 
         //trying with object Mapper, does it really do ANYTHING?????
         //ALSO, DO I NEED to mark services with @TRANSACTIONAL????
@@ -159,7 +151,6 @@ public class StartUpInit {
          //       jsonArray, new TypeReference<List<CategoryTemplate>>() { });
 
         //ionTwoEasyJavaOneMedSql.setCategoryTemplates(asList);
-        ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTemplates);
 
         //in this template, we, or a service, should create a list of questions
         List<Question> templateQuestions = new ArrayList<>();
@@ -167,13 +158,25 @@ public class StartUpInit {
         templateQuestions.add(question1);
         templateQuestions.add(question2);
         templateQuestions.add(question3);
-        ionTwoEasyJavaOneMedSql.setQuestions(templateQuestions);
+        Set<Question> templQuest = new HashSet<>(templateQuestions);
+        ionTwoEasyJavaOneMedSql.setQuestions(templQuest);
         templateRepository.save(ionTwoEasyJavaOneMedSql);
 
         //Hibernate.initialize(ionTwoEasyJavaOneMedSql.getCategoryTemplates());
-        int forceLoad = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size();
-        System.out.println(forceLoad);
-        //ca sa mearga asta, mi-a trebuit @Proxy(lazy=false) la Template, altfel dadea Lazy init error dar doar acolo...
+        int forceLoadSizeCat = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size();
+        System.out.println("forceLoadSizeCat = " + forceLoadSizeCat);
+        int forceLoadSizeQue = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().size();
+        System.out.println("forceLoadSizeQue = " + forceLoadSizeQue);
+        //INTRISTING: ca sa mearga asta, mi-a trebuit @Proxy(lazy=false) la Template, si fetchType=EAger in catTempaltes din TEmplate, ca altfe; failed to lazily initialize a collection of role.
+        //chiar si asa, size imi da 0. WHY?????????????????????????????????????????????????????????????????????????????????????????????????????
+        //Mai mult, daca bag si getchType eager la questions, iti da cannot simultaneously fetch multiple bags. asa ca schimbi List in Set... csf, nai csf
+        //hibernate foloseste bags, care sunt unordered lists. si cam prefera set daca sunt mai multe, pentru unicitate..
+
+//        String forceLoadCatTempl = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(0).getName();
+//        System.out.println(forceLoadCatTempl);
+//        String forceLoadQuest = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().get(0).getName();
+        //astea failuiesc oricum...
+
 
         //ordinea ar fi intri, dai new test, el asocieaza ar trebui sa dea new template, si template
         Test test1 = new Test();
@@ -185,11 +188,11 @@ public class StartUpInit {
         List<String> testAnswers = new ArrayList<>();
         testAnswers.add("Da");
 
-        //acum, iau si bag answers in intrebarie din template
-        test1.getTemplate().getQuestions().get(0).setSelectedAnswers(testAnswers);
-        test1.getTemplate().getQuestions().get(1).setSelectedAnswers(testAnswers);
-        System.out.println(test1.getTemplate().getQuestions().size());
-        test1.getTemplate().getQuestions().get(2).setSelectedAnswers(testAnswers);
+        //acum, iau si bag answers in intrebarie din template, da asta era can aveam list. la set aparent mei greu sa iei un elem????????????????
+//        test1.getTemplate().getQuestions().get(0).setSelectedAnswers(testAnswers);
+//        test1.getTemplate().getQuestions().get(1).setSelectedAnswers(testAnswers);
+//        System.out.println(test1.getTemplate().getQuestions().size());
+//        test1.getTemplate().getQuestions().get(2).setSelectedAnswers(testAnswers);
 
         //se cauta cate intreb din testQuestions au corretAnswers.equal(selectdAnswers), si se seteaza o nota
 

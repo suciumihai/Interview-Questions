@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -27,17 +29,20 @@ public class Template implements Serializable{
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    //@JsonFormat(with = JsonFormat.Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED)
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    //@OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template")
     @OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template", fetch = FetchType.EAGER)
-    private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
+    //private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
+    private Set<CategoryTemplate> categoryTemplates = new HashSet<>();
 
     //@Column(nullable = false, name = "duration")
     //private String duration = "one minute";
     // primitive e bine not null, cu def value
 
-    @OneToMany(targetEntity = Question.class, mappedBy = "template")
-    private List<Question> questions = new ArrayList<>();
+    //@OneToMany(targetEntity = Question.class, mappedBy = "template")
+    @OneToMany(targetEntity = Question.class, mappedBy = "template", fetch = FetchType.EAGER)
+    //private List<Question> questions = new ArrayList<>();
+    private Set<Question> questions = new HashSet<>();
     //in loc de category, am decis sa am lista de questions in template
 
     //@OneToMany(mappedBy = "template")
