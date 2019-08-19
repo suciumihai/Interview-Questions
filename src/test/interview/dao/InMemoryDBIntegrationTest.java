@@ -171,6 +171,7 @@ public class InMemoryDBIntegrationTest {
         assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getName()).isIn("1 med sql", "2 easy java");
         assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getCategory().getName()).isIn("Java", "SQL");
         assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().stream().findFirst().get().getName()).isIn("q1", "q2", "q3", "q4");
+        assertEquals(2, templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size());
 
     }
 
