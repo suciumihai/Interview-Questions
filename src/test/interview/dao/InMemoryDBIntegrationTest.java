@@ -150,7 +150,8 @@ public class InMemoryDBIntegrationTest {
         Set<CategoryTemplate> catTempl = new HashSet<>(catTemplates);
 
         Template ionTwoEasyJavaOneMedSql = new Template();
-        ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTempl);
+        ionTwoEasyJavaOneMedSql.getCategoryTemplates().addAll(catTempl);
+        //ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTempl);
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
 
         //in this template, we, or a service, should create a list of questions
@@ -161,7 +162,8 @@ public class InMemoryDBIntegrationTest {
         templateQuestions.add(question3);
 
         Set<Question> tempQuest = new HashSet<>(templateQuestions);
-        ionTwoEasyJavaOneMedSql.setQuestions(tempQuest);
+        //ionTwoEasyJavaOneMedSql.getQuestions().addAll(tempQuest);
+        //ionTwoEasyJavaOneMedSql.setQuestions(tempQuest);
         templateRepository.save(ionTwoEasyJavaOneMedSql);
 
 //        assertEquals("q1", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().get(0).getName());
@@ -170,9 +172,11 @@ public class InMemoryDBIntegrationTest {
         //e greu sa testezi asa, caci HashSet nu iti garanteaza ordinea
         assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getName()).isIn("1 med sql", "2 easy java");
         assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getCategory().getName()).isIn("Java", "SQL");
-        assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().stream().findFirst().get().getName()).isIn("q1", "q2", "q3", "q4");
+        //assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().stream().findFirst().get().getName()).isIn("q1", "q2", "q3", "q4");
         assertEquals(2, templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size());
+        //use unitils for colletion matching without order
 
+        //save nu inseamna neaparat ca ai salvat in baza de date. pana nu faci flush. gen entityManager.flush. tre facut des. nu e neaparat commit.
     }
 
     @Test

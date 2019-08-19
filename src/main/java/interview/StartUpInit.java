@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import org.h2.tools.Server;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Slf4j
@@ -39,9 +40,18 @@ public class StartUpInit {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private StartUpInit selfInject;
+
     //PostConstruct defines a method as initialization method of a spring bean which runs after dependency injection is completed
     @PostConstruct
-    public void init() {
+    public void init(){
+        selfInject.setup();
+    }
+
+    //nu merge transactional cu postconstruct
+    @Transactional
+    public void setup() {
 
         Candidate ion = new Candidate();
         ion.setName("Ion Gheorghe");
@@ -140,7 +150,11 @@ public class StartUpInit {
 
         Template ionTwoEasyJavaOneMedSql = new Template();
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
-        ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTempl);
+        ionTwoEasyJavaOneMedSql.getCategoryTemplates().addAll(catTempl);
+        for (CategoryTemplate categoryTemplate : catTempl) {
+            categoryTemplate.setTemplate(ionTwoEasyJavaOneMedSql);
+        }
+
 
         //trying with object Mapper, does it really do ANYTHING?????
         //ALSO, DO I NEED to mark services with @TRANSACTIONAL????
@@ -159,14 +173,20 @@ public class StartUpInit {
         templateQuestions.add(question2);
         templateQuestions.add(question3);
         Set<Question> templQuest = new HashSet<>(templateQuestions);
-        ionTwoEasyJavaOneMedSql.setQuestions(templQuest);
+        //ionTwoEasyJavaOneMedSql.getQuestions().addAll(templQuest);
+
+        //templateRepository.flush();
+
         templateRepository.save(ionTwoEasyJavaOneMedSql);
 
         //Hibernate.initialize(ionTwoEasyJavaOneMedSql.getCategoryTemplates());
+        System.out.println("idu este : " + ionTwoEasyJavaOneMedSql.getId());
         int forceLoadSizeCat = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size();
         System.out.println("forceLoadSizeCat = " + forceLoadSizeCat);
-        int forceLoadSizeQue = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().size();
-        System.out.println("forceLoadSizeQue = " + forceLoadSizeQue);
+
+        //int forceLoadSizeQue = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().size();
+        //System.out.println("forceLoadSizeQue = " + forceLoadSizeQue);
+
         //INTRISTING: ca sa mearga asta, mi-a trebuit @Proxy(lazy=false) la Template, si fetchType=EAger in catTempaltes din TEmplate, ca altfe; failed to lazily initialize a collection of role.
         //Mai mult, daca bag si getchType eager la questions, iti da cannot simultaneously fetch multiple bags. asa ca schimbi List in Set... csf, nai csf
         //hibernate foloseste bags, care sunt unordered lists. si cam prefera set daca sunt mai multe, pentru unicitate..

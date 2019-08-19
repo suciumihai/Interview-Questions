@@ -21,7 +21,10 @@ public class TemplateServiceController {
 
     @RequestMapping(value="/templates")
     public List<Template> getTemplates(){
-        return templateRepository.findAll();
+
+        final List<Template> all = templateRepository.findAll();
+
+        return all;
     }
     //difference between session.get() vs session.load method is that get() involves database hit if object doesn't exists in Session
     // Cache and returns a fully initialized object which may involve several database call while load method can return

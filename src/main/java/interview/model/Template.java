@@ -18,8 +18,11 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Proxy(lazy=false)
 public class Template implements Serializable{
+
+    //model de jpa nu se expune ca serviciu rest
+    //iti trebuie layer/framework de mapare. 1 model d edate pentgru entitati, 1 model pentru datele mele. model rest e peste model jpa
+    //altfel dai de ciclicitate
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,20 +32,24 @@ public class Template implements Serializable{
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    //@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     //@OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template")
-    @OneToMany(targetEntity = CategoryTemplate.class, mappedBy = "template", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "template")
     //private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
-    private Set<CategoryTemplate> categoryTemplates = new HashSet<>();
+    final private Set<CategoryTemplate> categoryTemplates = new HashSet<>();
+    //maparea dintre entitati e un proxy. cu seteri scri inproxyul hibernatelui. categoryTemplates e de fapt proxul hibernate
+    // de aia il faci final, si iei doar getter. nu trebuie sa poti seta colectia. lombobk nu face setter la final
+
+    //decat sa pui eager, ma ibine incarci cu mana ta. EWAGER merge greu, greu. iti ma mult pe teava, si nu e garantat
 
     //@Column(nullable = false, name = "duration")
     //private String duration = "one minute";
     // primitive e bine not null, cu def value
 
     //@OneToMany(targetEntity = Question.class, mappedBy = "template")
-    @OneToMany(targetEntity = Question.class, mappedBy = "template", fetch = FetchType.EAGER)
+    //@OneToMany(mappedBy = "template")
     //private List<Question> questions = new ArrayList<>();
-    private Set<Question> questions = new HashSet<>();
+    //final private Set<Question> questions = new HashSet<>();
     //in loc de category, am decis sa am lista de questions in template
 
     //@OneToMany(mappedBy = "template")

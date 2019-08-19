@@ -40,9 +40,9 @@ public class Question implements Comparable<Question>{
     private Category category;
     // daca am scos lista de questions din category, nu tre neaparat sa scot si cat din question
 
-    @ManyToOne
-    @JoinColumn(name = "template_id")
-    private Template template;
+    //@ManyToOne
+    //@JoinColumn(name = "template_id")
+    //private Template template;
 
     @Column
     private String content;

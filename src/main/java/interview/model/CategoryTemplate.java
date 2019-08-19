@@ -1,5 +1,6 @@
 package interview.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class CategoryTemplate implements Comparable<CategoryTemplate>{
 
     @ManyToOne
     @JoinColumn(name = "template_id")
+    @JsonIgnore
     private Template template;
     //chair daca asta nu o sa il arat in html, tot tre sa existe, ca asa mearga lista din template
 
@@ -41,5 +43,8 @@ public class CategoryTemplate implements Comparable<CategoryTemplate>{
         return ((this.name).compareTo(o.getName()));
     }
     //ar cam trebui sa rezolv cu difficulty asta, ca e in 2 viewuri deja. ar trebui sa fie ca la category, si sa fie subcategorii., gen eay java, etc
+
+    //make equal sis hashcode per id
+
 
 }
