@@ -86,8 +86,6 @@ public class InMemoryDBIntegrationTest {
 
         List<String> q1CorAns = new ArrayList<>();
         List<String> q1PosAns = new ArrayList<>();
-        q1CorAns.add("Nu");
-        q1CorAns.add("Poate");
         q1CorAns.add("Da");
         q1PosAns.add("Da");
         q1PosAns.add("Nu");
@@ -97,8 +95,8 @@ public class InMemoryDBIntegrationTest {
         question1.setName("q1");
         question1.setDifficulty("Easy");
         question1.setContent("este java OOP?");
-        question1.setCorrectAnswers(q1CorAns);
-        question1.setPossibleAnswers(q1PosAns);
+        question1.getCorrectAnswers().addAll(q1CorAns);
+        question1.getPossibleAnswers().addAll(q1PosAns);
         question1.setCategory(java);
         questionRepository.save(question1);
 
@@ -106,8 +104,8 @@ public class InMemoryDBIntegrationTest {
         question2.setName("q2");
         question2.setDifficulty("Easy");
         question2.setContent("O clasa abstracta nu se instantiaza");
-        question2.setCorrectAnswers(q1CorAns);
-        question2.setPossibleAnswers(q1PosAns);
+        question2.getCorrectAnswers().addAll(q1CorAns);
+        question2.getPossibleAnswers().addAll(q1PosAns);
         question2.setCategory(java);
         questionRepository.save(question2);
 
@@ -115,8 +113,8 @@ public class InMemoryDBIntegrationTest {
         question3.setName("q3");
         question3.setDifficulty("Medium");
         question3.setContent("select * iti da totu din tabel?");
-        question3.setCorrectAnswers(q1CorAns);
-        question3.setPossibleAnswers(q1PosAns);
+        question3.getCorrectAnswers().addAll(q1CorAns);
+        question3.getPossibleAnswers().addAll(q1PosAns);
         question3.setCategory(sql);
         questionRepository.save(question3);
 
@@ -124,8 +122,8 @@ public class InMemoryDBIntegrationTest {
         question4.setName("q4");
         question4.setDifficulty("Hard");
         question4.setContent("TO_DATE('yyyy-mm-dd', '2019-07-31') e corect");
-        question4.setCorrectAnswers(q1CorAns);
-        question4.setPossibleAnswers(q1PosAns);
+        question4.getCorrectAnswers().addAll(q1CorAns);
+        question4.getPossibleAnswers().addAll(q1PosAns);
         question4.setCategory(sql);
         questionRepository.save(question4);
 
@@ -143,7 +141,6 @@ public class InMemoryDBIntegrationTest {
         OneMedSql.setDifficulty("Medium");
         categoryTemplateRepository.save(OneMedSql);
 
-        //now we can make a template
         List<CategoryTemplate> catTemplates = new ArrayList<>();
         catTemplates.add(OneMedSql);
         catTemplates.add(TwoEasyJava);
@@ -151,32 +148,22 @@ public class InMemoryDBIntegrationTest {
 
         Template ionTwoEasyJavaOneMedSql = new Template();
         ionTwoEasyJavaOneMedSql.getCategoryTemplates().addAll(catTempl);
-        //ionTwoEasyJavaOneMedSql.setCategoryTemplates(catTempl);
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
 
-        //in this template, we, or a service, should create a list of questions
         List<Question> templateQuestions = new ArrayList<>();
-        //in functie de nr de intrebari, si categoria din template catgory, se adauga in lista intrebari. ar trebui sa dea
         templateQuestions.add(question1);
         templateQuestions.add(question2);
         templateQuestions.add(question3);
 
         Set<Question> tempQuest = new HashSet<>(templateQuestions);
-        //ionTwoEasyJavaOneMedSql.getQuestions().addAll(tempQuest);
-        //ionTwoEasyJavaOneMedSql.setQuestions(tempQuest);
         templateRepository.save(ionTwoEasyJavaOneMedSql);
 
-//        assertEquals("q1", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().get(0).getName());
-//        assertEquals("SQL", templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(0).getCategory().getName());
-
-        //e greu sa testezi asa, caci HashSet nu iti garanteaza ordinea
         assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getName()).isIn("1 med sql", "2 easy java");
-        assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().iterator().next().getCategory().getName()).isIn("Java", "SQL");
-        //assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().stream().findFirst().get().getName()).isIn("q1", "q2", "q3", "q4");
+        assertThat(templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().stream().findFirst().get().getCategory().getName()).isIn("Java", "SQL");
         assertEquals(2, templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size());
-        //use unitils for colletion matching without order
 
-        //save nu inseamna neaparat ca ai salvat in baza de date. pana nu faci flush. gen entityManager.flush. tre facut des. nu e neaparat commit.
+
+
     }
 
     @Test
@@ -212,7 +199,6 @@ public class InMemoryDBIntegrationTest {
 
         List<CategoryTemplate> asList = mapper.readValue(
                 jsonArray, new TypeReference<List<CategoryTemplate>>() { });
-       //assertThat(asList.get(0), instanceOf(CategoryTemplate.class));
        assertEquals(asList.get(0).getName(), OneMedSql.getName());
     }
 }

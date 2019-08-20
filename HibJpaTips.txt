@@ -1,0 +1,71 @@
+pentru x2Db, in resources applciation properties ai db info, gen usr, pwd si #http://localhost:8080/h2-console ca sa pot vedea ce e in db
+
+pentru hib, tot aici ai setarile, si server.contextPath=/interview-portal
+
+ai o clas ade JPACOINFIG. isi ia info din appkllcaitoon / properties, ca sa creeze datasorceuri
+
+mai ai o clasa startupinit, cu //PostConstruct defines a method as initialization method of a spring bean which runs after dependency injection is completed.
+da acaolo am setup cu @ transactional, si setup e chemat din init(), care e post construct.
+imi trebie transactional, si nu se pupa cu post construct
+
+can ai facut RESTCONTROLLER, a trecut el automat pe json.
+tot acolo, ai trecut origins = "http://localhost:4200. eu ale mele rapsund pe 8080, si s astie ca vine de la angular 4200
+defalt la /tempaltes e GET
+ddign crossorigin requests to deploy the AngularJS front-end application separately than the REST API
+ESTful web services. It serves JSON, XML and custom response. This is the interview.controller class file that contains GET, POST, PUT methods REST Endpoint
+//eu am un rest controller. care iti spune ca la urul asta cheama metoda, si daca ai obiect bun serializeaza.
+        //da inaitea lui, e un listener/ controller din spring, facade, care primeste cererea de la angular, in caul meu, el decide ce controler foloseste de la mine, el decide ce librarie de json serilizare foloseste, etc
+
+o tranzactie de business porneste la candidateRepository.detel. se incheie la .save
+da nu garanteaza ca trece in baza de date. trebuie candidateRepository.flush. si atunci, trebuie nu e garantat commit
+
+
+in MODEL, trebuie u nmodel pentru JPA, si alt model pentru REST, cu un mapping layer / framweork intre ei
+model de jpa nu se expune ca serviciu rest. e risc de ciclicitate, gen  templ are quest care are templ etc
+a trebuit in categoryTemplate, sa bag JsonIngnre la template, sa evit ciclicitatea
+VEZI:https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+
+best practice e ca sa ai prim key auto id generata, si o coloana unique, care sa iti fie tie identificatorul
+
+noArgsConstructor, HashMap si Equals sunt necesare.
+Daca faci set, hashSet e unic, da nu are ordonare. iti trebuie si comparable.
+public int compareTo(Question question) {
+        return (this.name.compareTo(question.getName()));
+    }
+
+nu e obligatorie reciprocitatea cu lista, intre parinte si copil. poate copil e independent, chair nu vreau lista de copii
+
+primitive e bine not null, cu def value
+
+decat sa pui eager, ma ibine incarci cu mana ta. EWAGER merge greu, greu. iti ma mult pe teava, si nu e garantat. E cam antipattern. jpa incearca s afie lazy
+
+maparea dintre entitati e un proxy. cu seteri scri inproxyul hibernatelui. categoryTemplates e de fapt proxul hibernate
+de aia il faci final, si iei doar getter. nu trebuie sa poti seta colectia. lombobk nu face setter la final.
+asa ca in loc de parinte.setCopii(list) faci parinte.getCopii.addAll(list).
+Si daca ai o colectie, o faci final. vezi in Template
+
+nu mai am nevoide de jsonGInore, caci nu mai folosesc in controller GetOne, ci FindBYID. getOne dadea o referinta, deci de fapt un proxy cu java asist, si ala era lazy
+
+
+    //difference between session.get() vs session.load method is that get() involves database hit if object doesn't exists in Session
+    // Cache and returns a fully initialized object which may involve several database call while load method can return
+    // proxy in place and only initialize the object or hit the database if any method other than getId() is called on
+    // persistent or entity object. This lazy initialization can save couple of database round-trip which result in better performance.
+
+Am avut o problema cu multipla bags. aveam 2 liste cu fetchTYpe eager. a vrut sa le fac sets, dar chiar si asa, tot nu a mers. in final, nu l-am mai fortat eu p le sa ia copii, am incarcat manual.
+VEZI:
+https://thoughts-on-java.org/association-mappings-bag-list-set/
+
+
+la TESTE, u cna use unitls library to check lists and sets mathcing without order
+-------
+2D
+in User, aveam private Role role ca enum. s abag validare la string role. - HR, QuestionAdmin
+versionare - question vs testquestion
+in Question, validare la difficultu: Easy, Medium, Hard
+in Categoy - SUBCATEGORII, 
+// aici tratam o FK catre el, ca parinte
+// fiind lazy jpa lista automat, dar nu e cam in tabel. il incarca din bd, doar de pe primu nivel
+// pot sa sar asta, da ca sa gasesc copii ar trebui sa fac query; asa imi da jpa ca am pus lista, cu get Parent, etc
+
+

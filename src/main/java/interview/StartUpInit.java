@@ -43,13 +43,12 @@ public class StartUpInit {
     @Autowired
     private StartUpInit selfInject;
 
-    //PostConstruct defines a method as initialization method of a spring bean which runs after dependency injection is completed
+
     @PostConstruct
     public void init(){
         selfInject.setup();
     }
 
-    //nu merge transactional cu postconstruct
     @Transactional
     public void setup() {
 
@@ -94,8 +93,8 @@ public class StartUpInit {
         question1.setName("q1");
         question1.setDifficulty("Easy");
         question1.setContent("este java OOP?");
-        question1.setCorrectAnswers(q1CorAns);
-        question1.setPossibleAnswers(q1PosAns);
+        question1.getPossibleAnswers().addAll(q1PosAns);
+        question1.getCorrectAnswers().addAll(q1CorAns);
         question1.setCategory(java);
         questionRepository.save(question1);
 
@@ -103,8 +102,8 @@ public class StartUpInit {
         question2.setName("q2");
         question2.setDifficulty("Easy");
         question2.setContent("O clasa abstracta nu se instantiaza");
-        question2.setCorrectAnswers(q1CorAns);
-        question2.setPossibleAnswers(q1PosAns);
+        question2.getPossibleAnswers().addAll(q1PosAns);
+        question2.getCorrectAnswers().addAll(q1CorAns);
         question2.setCategory(java);
         questionRepository.save(question2);
 
@@ -112,8 +111,8 @@ public class StartUpInit {
         question3.setName("q3");
         question3.setDifficulty("Medium");
         question3.setContent("select * iti da totu din tabel?");
-        question3.setCorrectAnswers(q1CorAns);
-        question3.setPossibleAnswers(q1PosAns);
+        question3.getPossibleAnswers().addAll(q1PosAns);
+        question3.getCorrectAnswers().addAll(q1CorAns);
         question3.setCategory(sql);
         questionRepository.save(question3);
 
@@ -121,12 +120,11 @@ public class StartUpInit {
         question4.setName("q4");
         question4.setDifficulty("Hard");
         question4.setContent("TO_DATE('yyyy-mm-dd', '2019-07-31') e corect");
-        question4.setCorrectAnswers(q1CorAns);
-        question4.setPossibleAnswers(q1PosAns);
+        question4.getPossibleAnswers().addAll(q1PosAns);
+        question4.getCorrectAnswers().addAll(q1CorAns);
         question4.setCategory(sql);
         questionRepository.save(question4);
 
-        //now that we have questions, we cam make a cat template
         CategoryTemplate TwoEasyJava = new CategoryTemplate();
         TwoEasyJava.setName("2 easy java");
         TwoEasyJava.setCategory(java);
@@ -141,12 +139,10 @@ public class StartUpInit {
         OneMedSql.setDifficulty("Medium");
         categoryTemplateRepository.save(OneMedSql);
 
-        //now we can make a template
         List<CategoryTemplate> catTemplates = new ArrayList<>();
         catTemplates.add(OneMedSql);
         catTemplates.add(TwoEasyJava);
         Set<CategoryTemplate> catTempl = new HashSet<>(catTemplates);
-        //daca vreau sa le sortez imi trebuie treeSet
 
         Template ionTwoEasyJavaOneMedSql = new Template();
         ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
@@ -154,67 +150,20 @@ public class StartUpInit {
         for (CategoryTemplate categoryTemplate : catTempl) {
             categoryTemplate.setTemplate(ionTwoEasyJavaOneMedSql);
         }
-
-
-        //trying with object Mapper, does it really do ANYTHING?????
-        //ALSO, DO I NEED to mark services with @TRANSACTIONAL????
-        //ObjectMapper mapper = new ObjectMapper();
-        //String jsonArray = mapper.writeValueAsString(catTemplates);
-
-        //List<CategoryTemplate> asList = mapper.readValue(
-         //       jsonArray, new TypeReference<List<CategoryTemplate>>() { });
-
-        //ionTwoEasyJavaOneMedSql.setCategoryTemplates(asList);
-
-        //in this template, we, or a service, should create a list of questions
-        List<Question> templateQuestions = new ArrayList<>();
-        //in functie de nr de intrebari, si categoria din template catgory, se adauga in lista intrebari. ar trebui sa dea
-        templateQuestions.add(question1);
-        templateQuestions.add(question2);
-        templateQuestions.add(question3);
-        Set<Question> templQuest = new HashSet<>(templateQuestions);
-        //ionTwoEasyJavaOneMedSql.getQuestions().addAll(templQuest);
-
-        //templateRepository.flush();
-
         templateRepository.save(ionTwoEasyJavaOneMedSql);
 
-        //Hibernate.initialize(ionTwoEasyJavaOneMedSql.getCategoryTemplates());
-        System.out.println("idu este : " + ionTwoEasyJavaOneMedSql.getId());
-        int forceLoadSizeCat = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().size();
-        System.out.println("forceLoadSizeCat = " + forceLoadSizeCat);
+        List<Question> testQuestions = new ArrayList<>();
+        testQuestions.add(question1);
+        testQuestions.add(question2);
+        testQuestions.add(question3);
 
-        //int forceLoadSizeQue = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().size();
-        //System.out.println("forceLoadSizeQue = " + forceLoadSizeQue);
-
-        //INTRISTING: ca sa mearga asta, mi-a trebuit @Proxy(lazy=false) la Template, si fetchType=EAger in catTempaltes din TEmplate, ca altfe; failed to lazily initialize a collection of role.
-        //Mai mult, daca bag si getchType eager la questions, iti da cannot simultaneously fetch multiple bags. asa ca schimbi List in Set... csf, nai csf
-        //hibernate foloseste bags, care sunt unordered lists. si cam prefera set daca sunt mai multe, pentru unicitate..
-        //chiar si asa, size imi da 0. WHY?????????????????????????????????????????????????????????????????????????????????????????????????????
-
-//        String forceLoadCatTempl = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getCategoryTemplates().get(0).getName();
-//        System.out.println(forceLoadCatTempl);
-//        String forceLoadQuest = templateRepository.getOne(ionTwoEasyJavaOneMedSql.getId()).getQuestions().get(0).getName();
-        //astea failuiesc oricum...
-
-
-        //ordinea ar fi intri, dai new test, el asocieaza ar trebui sa dea new template, si template
         Test test1 = new Test();
         test1.setName("ionTwoEasyJavaOneMedSqltest");
         test1.setCandidate(ion);
         test1.setTemplate(ionTwoEasyJavaOneMedSql);
 
-        //se creaza o lista de intrebari de test
         List<String> testAnswers = new ArrayList<>();
         testAnswers.add("Da");
-
-        //acum, iau si bag answers in intrebarie din template, da asta era can aveam list. la set aparent mei greu sa iei un elem????????????????
-//        test1.getTemplate().getQuestions().get(0).setSelectedAnswers(testAnswers);
-//        test1.getTemplate().getQuestions().get(1).setSelectedAnswers(testAnswers);
-//        System.out.println(test1.getTemplate().getQuestions().size());
-//        test1.getTemplate().getQuestions().get(2).setSelectedAnswers(testAnswers);
-
-        //se cauta cate intreb din testQuestions au corretAnswers.equal(selectdAnswers), si se seteaza o nota
 
         test1.setNota("100");
         testRepository.save(test1);

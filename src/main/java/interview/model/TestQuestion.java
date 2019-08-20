@@ -1,7 +1,9 @@
 package interview.model;
 
-import lombok.*;
-import org.hibernate.annotations.Proxy;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Question implements Comparable<Question>{
+public class TestQuestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,9 +42,9 @@ public class Question implements Comparable<Question>{
     @ElementCollection(targetClass = String.class)
     final private List<String> selectedAnswers = new ArrayList<>();
 
-    @Override
-    public int compareTo(Question question) {
-        return (this.name.compareTo(question.getName()));
-    }
+    @ManyToOne
+    @JoinColumn(name = "test_id")
+    @JsonIgnore
+    private Test test;
 
 }

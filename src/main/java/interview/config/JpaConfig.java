@@ -1,6 +1,6 @@
 package interview.config;
 
-//The java.util.Properties class is a class which represents a persistent set of properties.The Properties can be saved to a stream or loaded from a stream
+
 
 import java.util.Properties;
 
@@ -19,8 +19,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-//Let’s create a @Configuration class that searches for a file called applicationTest.properties as a property source
-// and creates a DataSource using the database properties defined within it
 @Configuration
 @EnableJpaRepositories(basePackages = "interview.dao")
 @PropertySource("application.properties")
