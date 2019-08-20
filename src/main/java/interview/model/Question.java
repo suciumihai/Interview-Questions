@@ -37,9 +37,6 @@ public class Question implements Comparable<Question>{
     @ElementCollection(targetClass = String.class)
     final private List<String> correctAnswers = new ArrayList<>();
 
-    @ElementCollection(targetClass = String.class)
-    final private List<String> selectedAnswers = new ArrayList<>();
-
     @Override
     public int compareTo(Question question) {
         return (this.name.compareTo(question.getName()));

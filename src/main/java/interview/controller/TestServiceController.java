@@ -21,7 +21,8 @@ public class TestServiceController {
 
     @RequestMapping(value="/tests")
     public List<Test> get(){
-        return repo.findAll();
+        final List<Test> all = repo.findAll();
+        return all;
     }
 
     @RequestMapping(value="/tests/{id}")

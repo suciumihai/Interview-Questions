@@ -16,6 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 public class TestQuestion {
 
+    public TestQuestion(Question question){
+        this.name = question.getName();
+        this.difficulty = question.getDifficulty();
+        this.category = question.getCategory();
+        this.content = question.getContent();
+        this.possibleAnswers.addAll(question.getPossibleAnswers());
+        this.correctAnswers.addAll(question.getCorrectAnswers());
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
