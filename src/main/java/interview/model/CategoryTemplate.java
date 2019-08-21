@@ -30,7 +30,7 @@ public class CategoryTemplate{
     private Category category;
 
     @Column
-    int questionNumber = 0;
+    private int questionNumber = 0;
 
     @Column
     private String difficulty;

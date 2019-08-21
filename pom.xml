@@ -80,6 +80,13 @@
            <version>1.16.10</version>
        </dependency>
 
+        <!--entity to Dto model mapping-->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
        <!-- testing, mai exact spring test si junit-->
        <dependency>
        <groupId>org.springframework.boot</groupId>

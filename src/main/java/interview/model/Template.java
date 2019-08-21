@@ -27,6 +27,6 @@ public class Template implements Serializable{
 
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     @OneToMany(mappedBy = "template")
-    final private Set<CategoryTemplate> categoryTemplates = new HashSet<>();
+    final private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
 
 }

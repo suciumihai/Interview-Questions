@@ -160,7 +160,7 @@ public class StartUpInit {
         test1.setTemplate(ionTwoEasyJavaOneMedSql);
 
         Set<TestQuestion> testQuestions = new HashSet<>();
-        Set<CategoryTemplate> testCatTemplates = test1.getTemplate().getCategoryTemplates();
+        List<CategoryTemplate> testCatTemplates = test1.getTemplate().getCategoryTemplates();
 
         for (Question question : questionRepository.findAll()) {
             testQuestionRepository.save(new TestQuestion(question));
