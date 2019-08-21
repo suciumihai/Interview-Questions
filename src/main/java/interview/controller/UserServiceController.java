@@ -55,8 +55,8 @@ public class UserServiceController {
         User user = convertToEntity(userDto);
         userRepository.deleteById(Long.parseLong(id));
         user.setId(Long.parseLong(id));
-        userRepository.save(user);
-        return convertToDto(user);
+        User userCreated = userRepository.save(user);
+        return convertToDto(userCreated);
     }
 
     @RequestMapping(value="/users/{id}", method = RequestMethod.DELETE)

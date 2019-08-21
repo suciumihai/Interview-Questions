@@ -38,7 +38,6 @@ public class CategoryTemplateServiceController {
 
     @RequestMapping(value="/categoryTemplates")
     public List<CategoryTemplateDto> getCategoryTemplates(){
-
         return categoryTemplateRepository.findAll().stream().map(categoryTemplate -> convertToDto(categoryTemplate)).collect(Collectors.toList());
     }
 
@@ -58,8 +57,8 @@ public class CategoryTemplateServiceController {
         CategoryTemplate categoryTemplate = convertToEntity(categoryTemplateDto);
         categoryTemplateRepository.deleteById(Long.parseLong(id));
         categoryTemplate.setId(Long.parseLong(id));
-        categoryTemplateRepository.save(categoryTemplate);
-        return convertToDto(categoryTemplate);
+        CategoryTemplate categoryTemplateCreated = categoryTemplateRepository.save(categoryTemplate);
+        return convertToDto(categoryTemplateCreated);
     }
 
     @RequestMapping(value="/categoryTemplates/{id}", method = RequestMethod.DELETE)

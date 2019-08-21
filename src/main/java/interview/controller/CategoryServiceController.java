@@ -56,8 +56,8 @@ public class CategoryServiceController {
         Category category = convertToEntity(categoryDto);
         categoryRepository.deleteById(Long.parseLong(id));
         category.setId(Long.parseLong(id));
-        categoryRepository.save(category);
-        return convertToDto(category);
+        Category categoryCreated = categoryRepository.save(category);
+        return convertToDto(categoryCreated);
     }
 
     @RequestMapping(value="/categories/{id}", method = RequestMethod.DELETE)
