@@ -54,12 +54,15 @@ public class CategoryTemplateServiceController {
     }
 
     @RequestMapping(value="/categoryTemplates/{id}", method = RequestMethod.PUT)
-    public CategoryTemplateDto updateCategoryTemplate(@PathVariable("id") String id, @RequestBody CategoryTemplateDto categoryTemplateDto){
-        CategoryTemplate categoryTemplate = convertToEntity(categoryTemplateDto);
-        categoryTemplateRepository.deleteById(Long.parseLong(id));
-        categoryTemplate.setId(Long.parseLong(id));
-        CategoryTemplate categoryTemplateCreated = categoryTemplateRepository.save(categoryTemplate);
-        return convertToDto(categoryTemplateCreated);
+    public void updateCategoryTemplate(@PathVariable("id") String id, @RequestBody CategoryTemplateDto categoryTemplateDto){
+        CategoryTemplate entity = convertToEntity(categoryTemplateDto);
+        CategoryTemplate existing = categoryTemplateRepository.findById(Long.valueOf(id)).get();
+        existing.setTemplate(entity.getTemplate());
+        existing.setDifficulty(entity.getDifficulty());
+        existing.setCategory(entity.getCategory());
+        existing.setQuestionNumber(entity.getQuestionNumber());
+        existing.setName(entity.getName());
+        categoryTemplateRepository.save(existing);
     }
 
     @RequestMapping(value="/categoryTemplates/{id}", method = RequestMethod.DELETE)

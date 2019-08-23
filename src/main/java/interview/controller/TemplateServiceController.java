@@ -53,12 +53,13 @@ public class TemplateServiceController {
     }
 
     @RequestMapping(value="/templates/{id}", method = RequestMethod.PUT)
-    public TemplateDto updateTemplate(@PathVariable("id") String id, @RequestBody TemplateDto templateDto){
-        Template template = convertToEntity(templateDto);
-        templateRepository.deleteById(Long.parseLong(id));
-        template.setId(Long.parseLong(id));
-        Template templateCreated = templateRepository.save(template);
-        return convertToDto(templateCreated);
+    public void updateTemplate(@PathVariable("id") String id, @RequestBody TemplateDto templateDto){
+        Template entity = convertToEntity(templateDto);
+        Template existing = templateRepository.findById(Long.valueOf(id)).get();
+        existing.setName(entity.getName());
+        existing.getCategoryTemplates().clear();
+        existing.getCategoryTemplates().addAll(entity.getCategoryTemplates());
+        templateRepository.save(existing);
     }
 
     @RequestMapping(value="/templates/{id}", method = RequestMethod.DELETE)

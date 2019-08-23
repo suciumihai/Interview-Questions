@@ -48,12 +48,21 @@ public class TestQuestionServiceController {
     }
 
     @RequestMapping(value="/testQuestions/{id}", method = RequestMethod.PUT)
-    public TestQuestionDto update(@PathVariable("id") String id, @RequestBody TestQuestionDto body){
+    public void update(@PathVariable("id") String id, @RequestBody TestQuestionDto body){
         TestQuestion entity = convertToEntity(body);
-        repo.deleteById(Long.parseLong(id));
-        entity.setId(Long.parseLong(id));
-        TestQuestion created = repo.save(entity);
-        return convertToDto(created);
+        TestQuestion existing = repo.findById(Long.valueOf(id)).get();
+        existing.setTest(entity.getTest());
+        existing.setCategory(entity.getCategory());
+        existing.setContent(entity.getContent());
+        existing.setDifficulty(entity.getDifficulty());
+        existing.setName(entity.getName());
+        existing.getPossibleAnswers().clear();
+        existing.getPossibleAnswers().addAll(entity.getPossibleAnswers());
+        existing.getCorrectAnswers().clear();
+        existing.getCorrectAnswers().addAll(entity.getCorrectAnswers());
+        existing.getSelectedAnswers().clear();
+        existing.getSelectedAnswers().addAll(entity.getSelectedAnswers());
+        repo.save(existing);
     }
 
     @RequestMapping(value="/testQuestions/{id}", method = RequestMethod.DELETE)

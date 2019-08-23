@@ -52,12 +52,16 @@ public class TestServiceController {
     }
 
     @RequestMapping(value="/tests/{id}", method = RequestMethod.PUT)
-    public TestDto update(@PathVariable("id") String id, @RequestBody TestDto body){
+    public void update(@PathVariable("id") String id, @RequestBody TestDto body){
         Test entity = convertToEntity(body);
-        repo.deleteById(Long.parseLong(id));
-        entity.setId(Long.parseLong(id));
-        Test created = repo.save(entity);
-        return convertToDto(created);
+        Test existing = repo.findById(Long.valueOf(id)).get();
+        existing.setCandidate(entity.getCandidate());
+        existing.setNota(entity.getNota());
+        existing.setTemplate(entity.getTemplate());
+        existing.getTestQuestions().clear();
+        existing.getTestQuestions().addAll(entity.getTestQuestions());
+        existing.setName(entity.getName());
+        repo.save(existing);
     }
 
     @RequestMapping(value="/tests/{id}", method = RequestMethod.DELETE)

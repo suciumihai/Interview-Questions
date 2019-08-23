@@ -50,12 +50,18 @@ public class QuestionServiceController {
     }
 
     @RequestMapping(value="/questions/{id}", method = RequestMethod.PUT)
-    public QuestionDto update(@PathVariable("id") String id, @RequestBody QuestionDto body){
+    public void update(@PathVariable("id") String id, @RequestBody QuestionDto body){
         Question entity = convertToEntity(body);
-        repo.deleteById(Long.parseLong(id));
-        entity.setId(Long.parseLong(id));
-        Question created = repo.save(entity);
-        return convertToDto(created);
+        Question existing = repo.findById(Long.valueOf(id)).get();
+        existing.setCategory(entity.getCategory());
+        existing.setContent(entity.getContent());
+        existing.setDifficulty(entity.getDifficulty());
+        existing.setName(entity.getName());
+        existing.getPossibleAnswers().clear();
+        existing.getPossibleAnswers().addAll(entity.getPossibleAnswers());
+        existing.getCorrectAnswers().clear();
+        existing.getCorrectAnswers().addAll(entity.getCorrectAnswers());
+        repo.save(existing);
     }
 
     @RequestMapping(value="/questions/{id}", method = RequestMethod.DELETE)
