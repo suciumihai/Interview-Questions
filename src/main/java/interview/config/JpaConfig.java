@@ -2,11 +2,13 @@ package interview.config;
 
 
 
+import java.util.Arrays;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -70,8 +72,11 @@ public class JpaConfig {
     }
 
     @Bean
-    public ModelMapper modelMapper() {
-        ModelMapper mapper = new ModelMapper();
+    public DozerBeanMapper mapper(){
+        DozerBeanMapper mapper = new DozerBeanMapper();
+        mapper.setMappingFiles(Arrays.asList("dozer.xml"));
+//    public ModelMapper modelMapper() {
+//        ModelMapper mapper = new ModelMapper();
                 return mapper;
     }
 

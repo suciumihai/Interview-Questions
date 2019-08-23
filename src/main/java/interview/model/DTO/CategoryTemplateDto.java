@@ -1,5 +1,6 @@
 package interview.model.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ public class CategoryTemplateDto {
 
     private String name;
 
+    @JsonIgnore
     private TemplateDto templateDto;
 
     private CategoryDto categoryDto;

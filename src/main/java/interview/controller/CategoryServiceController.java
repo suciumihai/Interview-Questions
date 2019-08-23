@@ -5,6 +5,7 @@ import interview.dao.TemplateRepository;
 import interview.model.Category;
 import interview.model.DTO.CategoryDto;
 import interview.model.Template;
+import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,8 @@ public class CategoryServiceController {
     private CategoryRepository categoryRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    //private ModelMapper modelMapper;
+    private DozerBeanMapper modelMapper;
 
     private CategoryDto convertToDto(Category category){
         CategoryDto categoryDto = modelMapper.map(category, CategoryDto.class);

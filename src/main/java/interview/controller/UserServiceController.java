@@ -3,11 +3,13 @@ package interview.controller;
 import interview.dao.UserRepository;
 import interview.model.DTO.UserDto;
 import interview.model.User;
+import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -20,7 +22,8 @@ public class UserServiceController {
     private UserRepository userRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    //private ModelMapper modelMapper;
+    private DozerBeanMapper modelMapper;
 
     private UserDto convertToDto(User user){
         UserDto userDto = modelMapper.map(user, UserDto.class);

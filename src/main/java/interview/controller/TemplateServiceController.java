@@ -4,6 +4,7 @@ import interview.config.JpaConfig;
 import interview.dao.TemplateRepository;
 import interview.model.DTO.TemplateDto;
 import interview.model.Template;
+import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,8 @@ public class TemplateServiceController {
     private TemplateRepository templateRepository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    //private ModelMapper modelMapper;
+    private DozerBeanMapper modelMapper;
 
     private TemplateDto convertToDto(Template template){
         TemplateDto templateDto = modelMapper.map(template, TemplateDto.class);

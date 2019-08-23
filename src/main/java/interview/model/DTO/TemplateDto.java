@@ -16,6 +16,6 @@ public class TemplateDto {
 
     private String name;
 
-    final private List<CategoryTemplateDto> categoryTemplates = new ArrayList<>();
+    private List<CategoryTemplateDto> categoryTemplatesDto = new ArrayList<>();
 
 }
