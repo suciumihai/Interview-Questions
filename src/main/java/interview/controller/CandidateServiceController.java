@@ -53,12 +53,14 @@ public class CandidateServiceController {
     }
 
     @RequestMapping(value = "/candidates/{id}", method = RequestMethod.PUT)
-    public CandidateDto updateCandidate(@PathVariable("id") String id, @RequestBody CandidateDto body){
+    public void updateCandidate(@PathVariable("id") String id, @RequestBody CandidateDto body){
         Candidate entity = convertToEntity(body);
-        candidateRepository.deleteById(Long.parseLong(id));
-        entity.setId(Long.parseLong(id));
-        Candidate created = candidateRepository.save(entity);
-        return convertToDto(created);
+        Candidate existing = candidateRepository.findById(Long.valueOf(id)).get();
+        existing.setSurName(entity.getSurName());
+        existing.setName(entity.getName());
+        existing.setEmail(entity.getEmail());
+        existing.setPhone(entity.getPhone());
+        candidateRepository.save(existing);
     }
 
     @RequestMapping(value = "/candidates/{id}", method = RequestMethod.DELETE)

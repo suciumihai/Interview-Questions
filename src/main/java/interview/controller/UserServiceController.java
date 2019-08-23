@@ -53,12 +53,13 @@ public class UserServiceController {
     }
 
     @RequestMapping(value="/users/{id}", method = RequestMethod.PUT)
-    public UserDto updateUser(@PathVariable("id") String id, @RequestBody UserDto userDto){
-        User user = convertToEntity(userDto);
-        userRepository.deleteById(Long.parseLong(id));
-        user.setId(Long.parseLong(id));
-        User userCreated = userRepository.save(user);
-        return convertToDto(userCreated);
+    public void updateUser(@PathVariable("id") String id, @RequestBody UserDto userDto){
+        User entity = convertToEntity(userDto);
+        User existing = userRepository.findById(Long.valueOf(id)).get();
+        existing.setEmail(entity.getEmail());
+        existing.setRole(entity.getRole());
+        existing.setPassword(entity.getPassword());
+        userRepository.save(existing);
     }
 
     @RequestMapping(value="/users/{id}", method = RequestMethod.DELETE)
