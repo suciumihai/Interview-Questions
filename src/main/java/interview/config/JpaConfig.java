@@ -75,8 +75,6 @@ public class JpaConfig {
     public DozerBeanMapper mapper(){
         DozerBeanMapper mapper = new DozerBeanMapper();
         mapper.setMappingFiles(Arrays.asList("dozer.xml"));
-//    public ModelMapper modelMapper() {
-//        ModelMapper mapper = new ModelMapper();
                 return mapper;
     }
 

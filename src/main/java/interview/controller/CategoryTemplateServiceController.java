@@ -25,7 +25,6 @@ public class CategoryTemplateServiceController {
     private CategoryTemplateRepository categoryTemplateRepository;
 
     @Autowired
-    //private ModelMapper modelMapper;
     private DozerBeanMapper modelMapper;
 
     private CategoryTemplateDto convertToDto(CategoryTemplate categoryTemplate){

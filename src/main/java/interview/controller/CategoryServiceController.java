@@ -23,7 +23,6 @@ public class CategoryServiceController {
     private CategoryRepository categoryRepository;
 
     @Autowired
-    //private ModelMapper modelMapper;
     private DozerBeanMapper modelMapper;
 
     private CategoryDto convertToDto(Category category){

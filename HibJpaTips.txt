@@ -10,6 +10,8 @@ imi trebie transactional, si nu se pupa cu post construct
 
 ca sa mearga serializarea rest dto, in Japconfig am bagat un @Bean public ModelMapper
 
+trebuie noarg construcotr, so lombik nu iti pune setter pe variabile final
+
 can ai facut RESTCONTROLLER, a trecut el automat pe json.
 tot acolo, ai trecut origins = "http://localhost:4200. eu ale mele rapsund pe 8080, si s astie ca vine de la angular 4200
 defalt la /tempaltes e GET

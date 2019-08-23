@@ -23,4 +23,40 @@
             <b>categoryTemplatesDto</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>interview.model.Question</class-a>
+        <class-b>interview.model.DTO.QuestionDto</class-b>
+        <field>
+            <a>category</a>
+            <b>categoryDto</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>interview.model.Test</class-a>
+        <class-b>interview.model.DTO.TestDto</class-b>
+        <field>
+            <a>template</a>
+            <b>templateDto</b>
+        </field>
+        <field>
+            <a>candidate</a>
+            <b>candidateDto</b>
+        </field>
+        <field>
+            <a>testQuestions</a>
+            <b>testQuestionsDto</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>interview.model.TestQuestion</class-a>
+        <class-b>interview.model.DTO.TestQuestionDto</class-b>
+        <field>
+            <a>category</a>
+            <b>categoryDto</b>
+        </field>
+        <field>
+            <a>test</a>
+            <b>testDto</b>
+        </field>
+    </mapping>
 </mappings>

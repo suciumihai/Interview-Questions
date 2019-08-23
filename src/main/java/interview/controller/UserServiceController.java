@@ -22,7 +22,6 @@ public class UserServiceController {
     private UserRepository userRepository;
 
     @Autowired
-    //private ModelMapper modelMapper;
     private DozerBeanMapper modelMapper;
 
     private UserDto convertToDto(User user){

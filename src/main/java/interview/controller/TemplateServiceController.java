@@ -24,7 +24,6 @@ public class TemplateServiceController {
     private TemplateRepository templateRepository;
 
     @Autowired
-    //private ModelMapper modelMapper;
     private DozerBeanMapper modelMapper;
 
     private TemplateDto convertToDto(Template template){
