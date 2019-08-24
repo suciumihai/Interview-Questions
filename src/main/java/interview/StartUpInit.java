@@ -146,43 +146,43 @@ public class StartUpInit {
         catTemplates.add(TwoEasyJava);
         Set<CategoryTemplate> catTempl = new HashSet<>(catTemplates);
 
-        Template ionTwoEasyJavaOneMedSql = new Template();
-        ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
-        ionTwoEasyJavaOneMedSql.getCategoryTemplates().addAll(catTempl);
-        for (CategoryTemplate categoryTemplate : catTempl) {
-            categoryTemplate.setTemplate(ionTwoEasyJavaOneMedSql);
-        }
-        templateRepository.save(ionTwoEasyJavaOneMedSql);
-
-        Test test1 = new Test();
-        test1.setName("ionTwoEasyJavaOneMedSqltest");
-        test1.setCandidate(ion);
-        test1.setTemplate(ionTwoEasyJavaOneMedSql);
-
-        Set<TestQuestion> testQuestions = new HashSet<>();
-        List<CategoryTemplate> testCatTemplates = test1.getTemplate().getCategoryTemplates();
-
-        for (Question question : questionRepository.findAll()) {
-            testQuestionRepository.save(new TestQuestion(question));
-        }
-
-        for (CategoryTemplate testCatTemplate : testCatTemplates) {
-            List<Question> questions = new ArrayList<>(questionRepository.findQuestByCategDiffi(testCatTemplate.getCategory(), testCatTemplate.getDifficulty()));
-            int i = 0;
-            while (i < testCatTemplate.getQuestionNumber()){
-                Random rand = new Random();
-                Question q = questions.get(rand.nextInt(questions.size()));
-                TestQuestion tq = testQuestionRepository.getByName(q.getName());
-                if (testQuestions.add(tq))
-                    i++;
-            }
-        }
-
-        test1.getTestQuestions().addAll(testQuestions);
-        for (TestQuestion testQuestion : testQuestions) {
-            testQuestion.setTest(test1);
-        }
-        test1.setNota("100");
-        testRepository.save(test1);
+//        Template ionTwoEasyJavaOneMedSql = new Template();
+//        ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
+//        ionTwoEasyJavaOneMedSql.getCategoryTemplates().addAll(catTempl);
+//        for (CategoryTemplate categoryTemplate : catTempl) {
+//            categoryTemplate.setTemplate(ionTwoEasyJavaOneMedSql);
+//        }
+//        templateRepository.save(ionTwoEasyJavaOneMedSql);
+//
+//        Test test1 = new Test();
+//        test1.setName("ionTwoEasyJavaOneMedSqltest");
+//        test1.setCandidate(ion);
+//        test1.setTemplate(ionTwoEasyJavaOneMedSql);
+//
+//        Set<TestQuestion> testQuestions = new HashSet<>();
+//        List<CategoryTemplate> testCatTemplates = test1.getTemplate().getCategoryTemplates();
+//
+//        for (Question question : questionRepository.findAll()) {
+//            testQuestionRepository.save(new TestQuestion(question));
+//        }
+//
+//        for (CategoryTemplate testCatTemplate : testCatTemplates) {
+//            List<Question> questions = new ArrayList<>(questionRepository.findQuestByCategDiffi(testCatTemplate.getCategory(), testCatTemplate.getDifficulty()));
+//            int i = 0;
+//            while (i < testCatTemplate.getQuestionNumber()){
+//                Random rand = new Random();
+//                Question q = questions.get(rand.nextInt(questions.size()));
+//                TestQuestion tq = testQuestionRepository.getByName(q.getName());
+//                if (testQuestions.add(tq))
+//                    i++;
+//            }
+//        }
+//
+//        test1.getTestQuestions().addAll(testQuestions);
+//        for (TestQuestion testQuestion : testQuestions) {
+//            testQuestion.setTest(test1);
+//        }
+//        test1.setNota("100");
+//        testRepository.save(test1);
     }
 }

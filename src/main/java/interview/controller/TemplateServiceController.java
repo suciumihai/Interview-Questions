@@ -2,6 +2,7 @@ package interview.controller;
 
 import interview.config.JpaConfig;
 import interview.dao.TemplateRepository;
+import interview.model.Category;
 import interview.model.CategoryTemplate;
 import interview.model.DTO.CategoryTemplateDto;
 import interview.model.DTO.TemplateDto;
@@ -59,6 +60,12 @@ public class TemplateServiceController {
     @RequestMapping(value="/templates", method = RequestMethod.POST)
     public TemplateDto createTemplate(@RequestBody TemplateDto templateDto){
         Template template = convertToEntity(templateDto);
+        template.getCategoryTemplates().clear();
+        List<CategoryTemplate> catTempl = templateDto.getCategoryTemplatesDto().stream().map(categoryTemplateDto -> convertToEntityCatTemp(categoryTemplateDto)).collect(Collectors.toList());
+        for (CategoryTemplate categoryTemplate : catTempl) {
+            categoryTemplate.setTemplate(template);
+        }
+        template.getCategoryTemplates().addAll(catTempl);
         Template templateCreated = templateRepository.save(template);
         return convertToDto(templateCreated);
     }
