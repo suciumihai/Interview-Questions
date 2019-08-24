@@ -30,6 +30,8 @@ public class QuestionServiceController {
 
     private Question convertToEntity(QuestionDto dto) {
         Question entity = modelMapper.map(dto, Question.class);
+        entity.getPossibleAnswers().addAll(dto.getPossibleAnswers());
+        entity.getCorrectAnswers().addAll(dto.getCorrectAnswers());
         return entity;
     }
 

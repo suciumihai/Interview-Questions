@@ -24,13 +24,11 @@ public class TestQuestionDto {
 
     private String content;
 
-    @ElementCollection(targetClass = String.class)
+    //@ElementCollection(targetClass = String.class)
     private List<String> possibleAnswers = new ArrayList<>();
 
-    @ElementCollection(targetClass = String.class)
     private List<String> correctAnswers = new ArrayList<>();
 
-    @ElementCollection(targetClass = String.class)
     private List<String> selectedAnswers = new ArrayList<>();
 
     @JsonIgnore

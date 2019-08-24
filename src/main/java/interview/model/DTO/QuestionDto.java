@@ -23,9 +23,7 @@ public class QuestionDto {
 
     private String content;
 
-    @ElementCollection(targetClass = String.class)
     private List<String> possibleAnswers = new ArrayList<>();
 
-    @ElementCollection(targetClass = String.class)
     private List<String> correctAnswers = new ArrayList<>();
 }

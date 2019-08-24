@@ -2,6 +2,8 @@ package interview.controller;
 
 import interview.config.JpaConfig;
 import interview.dao.TemplateRepository;
+import interview.model.CategoryTemplate;
+import interview.model.DTO.CategoryTemplateDto;
 import interview.model.DTO.TemplateDto;
 import interview.model.Template;
 import org.dozer.DozerBeanMapper;
@@ -13,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,8 +34,16 @@ public class TemplateServiceController {
         return templateDto;
     }
 
+    private CategoryTemplate convertToEntityCatTemp(CategoryTemplateDto categoryTemplateDto) {
+        CategoryTemplate categoryTemplate = modelMapper.map(categoryTemplateDto, CategoryTemplate.class);
+        return categoryTemplate;
+    }
+
     private Template convertToEntity(TemplateDto templateDto) {
         Template template = modelMapper.map(templateDto, Template.class);
+        List<CategoryTemplate> catTemps = new ArrayList<>();
+        catTemps = templateDto.getCategoryTemplatesDto().stream().map(categoryTemplateDto -> convertToEntityCatTemp(categoryTemplateDto)).collect(Collectors.toList());
+        template.getCategoryTemplates().addAll(catTemps);
         return template;
     }
 

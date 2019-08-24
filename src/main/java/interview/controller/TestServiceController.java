@@ -4,15 +4,20 @@ import interview.dao.QuestionRepository;
 import interview.dao.TemplateRepository;
 import interview.dao.TestRepository;
 import interview.model.DTO.TestDto;
+import interview.model.DTO.TestQuestionDto;
 import interview.model.Question;
 import interview.model.Template;
 import interview.model.Test;
+import interview.model.TestQuestion;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -30,8 +35,18 @@ public class TestServiceController {
         return dto;
     }
 
+    private TestQuestion convertToEntityTestQ(TestQuestionDto dto) {
+        TestQuestion entity = modelMapper.map(dto, TestQuestion.class);
+        entity.getSelectedAnswers().addAll(dto.getSelectedAnswers());
+        entity.getCorrectAnswers().addAll(dto.getCorrectAnswers());
+        entity.getPossibleAnswers().addAll(dto.getPossibleAnswers());
+        return entity;
+    }
     private Test convertToEntity(TestDto dto) {
         Test entity = modelMapper.map(dto, Test.class);
+        Set<TestQuestion> testQs = new HashSet<>();
+        testQs = dto.getTestQuestionsDto().stream().map(testQuestionDto -> convertToEntityTestQ(testQuestionDto)).collect(Collectors.toSet());
+        entity.getTestQuestions().addAll(testQs);
         return entity;
     }
 
