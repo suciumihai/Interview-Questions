@@ -44,7 +44,7 @@
             <b>candidateDto</b>
         </field>
         <field>
-            <a>testQuestions</a>
+            <a is-accessible="true">testQuestions</a>
             <b>testQuestionsDto</b>
         </field>
     </mapping>

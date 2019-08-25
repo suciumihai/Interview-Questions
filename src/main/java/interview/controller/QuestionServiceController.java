@@ -2,9 +2,11 @@ package interview.controller;
 
 import interview.dao.QuestionRepository;
 import interview.dao.TemplateRepository;
+import interview.dao.TestQuestionRepository;
 import interview.model.DTO.QuestionDto;
 import interview.model.Question;
 import interview.model.Template;
+import interview.model.TestQuestion;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,8 @@ public class QuestionServiceController {
 
     @Autowired
     private QuestionRepository repo;
+    @Autowired
+    private TestQuestionRepository testQuestionRepository;
 
     @Autowired
     private DozerBeanMapper modelMapper;
@@ -47,6 +51,7 @@ public class QuestionServiceController {
     @RequestMapping(value="/questions", method = RequestMethod.POST)
     public QuestionDto create(@RequestBody QuestionDto body){
         Question entity = convertToEntity(body);
+        testQuestionRepository.save(new TestQuestion(entity));
         Question created = repo.save(entity);
         return convertToDto(created);
     }

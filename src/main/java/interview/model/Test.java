@@ -31,7 +31,7 @@ public class Test implements Serializable {
     private Candidate candidate;
 
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "test", cascade={CascadeType.ALL},orphanRemoval=true)
     final private Set<TestQuestion> testQuestions = new HashSet<>();
 
     @Column(name="name", unique = true, nullable = false)

@@ -17,6 +17,7 @@ public class QuestionRepositoryImpl implements QuestionRepositoryCustom {
     private Set<Question> res = new HashSet<>();
     private List<Question> all = new ArrayList<>();
 
+    // nu prea mai e necesara, doar pt staticInit
     @Override
     public Set<Question> findQuestByCategDiffi(Category category, String difficulty) {
 

@@ -61,3 +61,4 @@ target/classes/META-INF/IntQuest.kotlin_module
 target/test-classes/META-INF/Interview-Questions.kotlin_module
 target/classes/META-INF/Interview-Questions.kotlin_module
 *.class
+*.class

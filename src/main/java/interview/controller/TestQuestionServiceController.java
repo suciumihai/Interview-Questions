@@ -28,9 +28,6 @@ public class TestQuestionServiceController {
 
     private TestQuestion convertToEntity(TestQuestionDto dto) {
         TestQuestion entity = modelMapper.map(dto, TestQuestion.class);
-        entity.getSelectedAnswers().addAll(dto.getSelectedAnswers());
-        entity.getCorrectAnswers().addAll(dto.getCorrectAnswers());
-        entity.getPossibleAnswers().addAll(dto.getPossibleAnswers());
         return entity;
     }
 

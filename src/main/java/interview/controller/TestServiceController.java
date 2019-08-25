@@ -1,23 +1,15 @@
 package interview.controller;
 
-import interview.dao.QuestionRepository;
-import interview.dao.TemplateRepository;
-import interview.dao.TestRepository;
+import interview.dao.*;
+import interview.model.*;
 import interview.model.DTO.TestDto;
 import interview.model.DTO.TestQuestionDto;
-import interview.model.Question;
-import interview.model.Template;
-import interview.model.Test;
-import interview.model.TestQuestion;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -26,6 +18,8 @@ public class TestServiceController {
 
     @Autowired
     private TestRepository repo;
+    @Autowired
+    private TestQuestionRepository testQuestionRepository;
 
     @Autowired
     private DozerBeanMapper modelMapper;
@@ -37,16 +31,10 @@ public class TestServiceController {
 
     private TestQuestion convertToEntityTestQ(TestQuestionDto dto) {
         TestQuestion entity = modelMapper.map(dto, TestQuestion.class);
-        entity.getSelectedAnswers().addAll(dto.getSelectedAnswers());
-        entity.getCorrectAnswers().addAll(dto.getCorrectAnswers());
-        entity.getPossibleAnswers().addAll(dto.getPossibleAnswers());
         return entity;
     }
     private Test convertToEntity(TestDto dto) {
         Test entity = modelMapper.map(dto, Test.class);
-        Set<TestQuestion> testQs = new HashSet<>();
-        testQs = dto.getTestQuestionsDto().stream().map(testQuestionDto -> convertToEntityTestQ(testQuestionDto)).collect(Collectors.toSet());
-        entity.getTestQuestions().addAll(testQs);
         return entity;
     }
 
@@ -61,7 +49,27 @@ public class TestServiceController {
 
     @RequestMapping(value="/tests", method = RequestMethod.POST)
     public TestDto create(@RequestBody TestDto body){
+
         Test entity = convertToEntity(body);
+        repo.save(entity);
+
+        Set<TestQuestion> testQuestions = new HashSet<>();
+        List<CategoryTemplate> categoryTemplates = entity.getTemplate().getCategoryTemplates();
+
+        for (CategoryTemplate categoryTemplate : categoryTemplates) {
+            List<TestQuestion> questions = new ArrayList<>(testQuestionRepository.findQuestByCategDiffi(categoryTemplate.getCategory().getName(),categoryTemplate.getDifficulty()));
+            int i = 0;
+            while (i < categoryTemplate.getQuestionNumber()) {
+                Random rand = new Random();
+                TestQuestion q = questions.get(rand.nextInt(questions.size()));
+                q.setTest(entity);
+                //testQuestionRepository.save(q); fair enough. merge. da nu salvez in repo. Mai am nevoie de testQuest?!?!?
+                if (testQuestions.add(q))
+                        i++;
+            }
+        }
+
+        entity.getTestQuestions().addAll(testQuestions);
         Test created = repo.save(entity);
         return convertToDto(created);
     }

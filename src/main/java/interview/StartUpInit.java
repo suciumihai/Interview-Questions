@@ -99,6 +99,7 @@ public class StartUpInit {
         question1.getCorrectAnswers().addAll(q1CorAns);
         question1.setCategory(java);
         questionRepository.save(question1);
+        testQuestionRepository.save(new TestQuestion(question1));
 
         Question question2 = new Question();
         question2.setName("q2");
@@ -108,6 +109,7 @@ public class StartUpInit {
         question2.getCorrectAnswers().addAll(q1CorAns);
         question2.setCategory(java);
         questionRepository.save(question2);
+        testQuestionRepository.save(new TestQuestion(question2));
 
         Question question3 = new Question();
         question3.setName("q3");
@@ -117,6 +119,7 @@ public class StartUpInit {
         question3.getCorrectAnswers().addAll(q1CorAns);
         question3.setCategory(sql);
         questionRepository.save(question3);
+        testQuestionRepository.save(new TestQuestion(question3));
 
         Question question4 = new Question();
         question4.setName("q4");
@@ -126,6 +129,7 @@ public class StartUpInit {
         question4.getCorrectAnswers().addAll(q1CorAns);
         question4.setCategory(sql);
         questionRepository.save(question4);
+        testQuestionRepository.save(new TestQuestion(question4));
 
         CategoryTemplate TwoEasyJava = new CategoryTemplate();
         TwoEasyJava.setName("2 easy java");
@@ -146,43 +150,39 @@ public class StartUpInit {
         catTemplates.add(TwoEasyJava);
         Set<CategoryTemplate> catTempl = new HashSet<>(catTemplates);
 
-//        Template ionTwoEasyJavaOneMedSql = new Template();
-//        ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
-//        ionTwoEasyJavaOneMedSql.getCategoryTemplates().addAll(catTempl);
-//        for (CategoryTemplate categoryTemplate : catTempl) {
-//            categoryTemplate.setTemplate(ionTwoEasyJavaOneMedSql);
-//        }
-//        templateRepository.save(ionTwoEasyJavaOneMedSql);
-//
-//        Test test1 = new Test();
-//        test1.setName("ionTwoEasyJavaOneMedSqltest");
-//        test1.setCandidate(ion);
-//        test1.setTemplate(ionTwoEasyJavaOneMedSql);
-//
-//        Set<TestQuestion> testQuestions = new HashSet<>();
-//        List<CategoryTemplate> testCatTemplates = test1.getTemplate().getCategoryTemplates();
-//
-//        for (Question question : questionRepository.findAll()) {
-//            testQuestionRepository.save(new TestQuestion(question));
-//        }
-//
-//        for (CategoryTemplate testCatTemplate : testCatTemplates) {
-//            List<Question> questions = new ArrayList<>(questionRepository.findQuestByCategDiffi(testCatTemplate.getCategory(), testCatTemplate.getDifficulty()));
-//            int i = 0;
-//            while (i < testCatTemplate.getQuestionNumber()){
-//                Random rand = new Random();
-//                Question q = questions.get(rand.nextInt(questions.size()));
-//                TestQuestion tq = testQuestionRepository.getByName(q.getName());
-//                if (testQuestions.add(tq))
-//                    i++;
-//            }
-//        }
-//
-//        test1.getTestQuestions().addAll(testQuestions);
-//        for (TestQuestion testQuestion : testQuestions) {
-//            testQuestion.setTest(test1);
-//        }
-//        test1.setNota("100");
-//        testRepository.save(test1);
+        Template ionTwoEasyJavaOneMedSql = new Template();
+        ionTwoEasyJavaOneMedSql.setName("ionTwoEasyJavaOneMedSql");
+        ionTwoEasyJavaOneMedSql.getCategoryTemplates().addAll(catTempl);
+        for (CategoryTemplate categoryTemplate : catTempl) {
+            categoryTemplate.setTemplate(ionTwoEasyJavaOneMedSql);
+        }
+        templateRepository.save(ionTwoEasyJavaOneMedSql);
+
+        Test test1 = new Test();
+        test1.setName("ionTwoEasyJavaOneMedSqltest");
+        test1.setCandidate(ion);
+        test1.setTemplate(ionTwoEasyJavaOneMedSql);
+
+        Set<TestQuestion> testQuestions = new HashSet<>();
+        List<CategoryTemplate> testCatTemplates = test1.getTemplate().getCategoryTemplates();
+
+        for (CategoryTemplate testCatTemplate : testCatTemplates) {
+            List<Question> questions = new ArrayList<>(questionRepository.findQuestByCategDiffi(testCatTemplate.getCategory(), testCatTemplate.getDifficulty()));
+            int i = 0;
+            while (i < testCatTemplate.getQuestionNumber()){
+                Random rand = new Random();
+                Question q = questions.get(rand.nextInt(questions.size()));
+                TestQuestion tq = testQuestionRepository.getByName(q.getName());
+                if (testQuestions.add(tq))
+                    i++;
+            }
+        }
+
+        test1.getTestQuestions().addAll(testQuestions);
+        for (TestQuestion testQuestion : testQuestions) {
+            testQuestion.setTest(test1);
+        }
+        test1.setNota("100");
+        testRepository.save(test1);
     }
 }
