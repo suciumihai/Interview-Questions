@@ -1,6 +1,7 @@
 package interview.controller;
 
 import interview.config.JpaConfig;
+import interview.dao.CategoryTemplateRepository;
 import interview.dao.TemplateRepository;
 import interview.model.Category;
 import interview.model.CategoryTemplate;
@@ -23,6 +24,9 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class TemplateServiceController {
+
+    @Autowired
+    private CategoryTemplateRepository categoryTemplateRepository;
 
     @Autowired
     private TemplateRepository templateRepository;
@@ -66,11 +70,14 @@ public class TemplateServiceController {
 //            categoryTemplate.setTemplate(template);
 //        }
 //        template.getCategoryTemplates().addAll(catTempl);
-        for (CategoryTemplate categoryTemplate : template.getCategoryTemplates()) {
-            categoryTemplate.setTemplate(template);
+        templateRepository.save(template);
+        List<CategoryTemplate> catTempl = template.getCategoryTemplates();
+        for (CategoryTemplate categoryTemplate : catTempl) {
+            CategoryTemplate current = categoryTemplateRepository.getOne(categoryTemplate.getId());
+            current.setTemplate(template);
+            categoryTemplateRepository.save(current);
         }
         Template templateCreated = templateRepository.save(template);
-        templateRepository.flush();
         return convertToDto(templateCreated);
     }
 

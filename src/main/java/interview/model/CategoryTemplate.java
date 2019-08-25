@@ -20,7 +20,7 @@ public class CategoryTemplate implements Serializable{
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    @ManyToOne(targetEntity=Template.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity=Template.class)
     @JoinColumn(name = "template_id")
     @JsonIgnore
     private Template template;

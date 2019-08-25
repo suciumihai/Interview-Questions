@@ -26,7 +26,7 @@ public class Template implements Serializable{
     private String name;
 
     @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    @OneToMany(targetEntity=CategoryTemplate.class, mappedBy = "template",cascade = {CascadeType.ALL, CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(targetEntity=CategoryTemplate.class, mappedBy = "template",cascade={CascadeType.MERGE},orphanRemoval=true)
     final private List<CategoryTemplate> categoryTemplates = new ArrayList<>();
 
 }
