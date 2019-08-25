@@ -42,9 +42,9 @@ public class TemplateServiceController {
 
     private Template convertToEntity(TemplateDto templateDto) {
         Template template = modelMapper.map(templateDto, Template.class);
-        List<CategoryTemplate> catTemps = new ArrayList<>();
-        catTemps = templateDto.getCategoryTemplatesDto().stream().map(categoryTemplateDto -> convertToEntityCatTemp(categoryTemplateDto)).collect(Collectors.toList());
-        template.getCategoryTemplates().addAll(catTemps);
+        //List<CategoryTemplate> catTemps = new ArrayList<>();
+        //catTemps = templateDto.getCategoryTemplatesDto().stream().map(categoryTemplateDto -> convertToEntityCatTemp(categoryTemplateDto)).collect(Collectors.toList());
+        //template.getCategoryTemplates().addAll(catTemps);
         return template;
     }
 
@@ -60,13 +60,17 @@ public class TemplateServiceController {
     @RequestMapping(value="/templates", method = RequestMethod.POST)
     public TemplateDto createTemplate(@RequestBody TemplateDto templateDto){
         Template template = convertToEntity(templateDto);
-        template.getCategoryTemplates().clear();
-        List<CategoryTemplate> catTempl = templateDto.getCategoryTemplatesDto().stream().map(categoryTemplateDto -> convertToEntityCatTemp(categoryTemplateDto)).collect(Collectors.toList());
-        for (CategoryTemplate categoryTemplate : catTempl) {
+//        template.getCategoryTemplates().clear();
+//        List<CategoryTemplate> catTempl = templateDto.getCategoryTemplatesDto().stream().map(categoryTemplateDto -> convertToEntityCatTemp(categoryTemplateDto)).collect(Collectors.toList());
+//        for (CategoryTemplate categoryTemplate : catTempl) {
+//            categoryTemplate.setTemplate(template);
+//        }
+//        template.getCategoryTemplates().addAll(catTempl);
+        for (CategoryTemplate categoryTemplate : template.getCategoryTemplates()) {
             categoryTemplate.setTemplate(template);
         }
-        template.getCategoryTemplates().addAll(catTempl);
         Template templateCreated = templateRepository.save(template);
+        templateRepository.flush();
         return convertToDto(templateCreated);
     }
 

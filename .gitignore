@@ -55,3 +55,8 @@ hs_err_pid*
 *.class
 *.class
 *.class
+*.class
+target/classes/META-INF/Interview-Questions.kotlin_module
+target/classes/META-INF/IntQuest.kotlin_module
+target/test-classes/META-INF/Interview-Questions.kotlin_module
+target/classes/META-INF/Interview-Questions.kotlin_module

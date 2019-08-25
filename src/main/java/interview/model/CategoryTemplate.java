@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @NoArgsConstructor
-public class CategoryTemplate{
+public class CategoryTemplate implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +20,7 @@ public class CategoryTemplate{
     @Column(name="name", unique = true, nullable = false)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(targetEntity=Template.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "template_id")
     @JsonIgnore
     private Template template;

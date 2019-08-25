@@ -12,6 +12,8 @@ ca sa mearga serializarea rest dto, in Japconfig am bagat un @Bean public ModelM
 
 trebuie noarg construcotr, so lombik nu iti pune setter pe variabile final
 
+la dozer, el mai opate recunoste, la unele fuields, cu isaCCesible="true", da n upoate mapa mereu ok. Aici nu mi-a mai dat eoare ca nu gaseste sa scrie, dar tot gol imi lasa catTemplates din template
+
 can ai facut RESTCONTROLLER, a trecut el automat pe json.
 tot acolo, ai trecut origins = "http://localhost:4200. eu ale mele rapsund pe 8080, si s astie ca vine de la angular 4200
 defalt la /tempaltes e GET
