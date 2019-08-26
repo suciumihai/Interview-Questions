@@ -162,6 +162,7 @@ public class StartUpInit {
         test1.setName("ionTwoEasyJavaOneMedSqltest");
         test1.setCandidate(ion);
         test1.setTemplate(ionTwoEasyJavaOneMedSql);
+        testRepository.save(test1);
 
         Set<TestQuestion> testQuestions = new HashSet<>();
         List<CategoryTemplate> testCatTemplates = test1.getTemplate().getCategoryTemplates();
@@ -181,8 +182,9 @@ public class StartUpInit {
         test1.getTestQuestions().addAll(testQuestions);
         for (TestQuestion testQuestion : testQuestions) {
             testQuestion.setTest(test1);
+            testQuestionRepository.save(testQuestion);
         }
-        test1.setNota("100");
+        testQuestionRepository.flush();
         testRepository.save(test1);
     }
 }

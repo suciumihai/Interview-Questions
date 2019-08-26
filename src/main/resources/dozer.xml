@@ -22,7 +22,6 @@
             <a is-accessible="true">categoryTemplates</a>
             <b>categoryTemplatesDto</b>
         </field>
-
     </mapping>
     <mapping>
         <class-a>interview.model.Question</class-a>
@@ -30,6 +29,14 @@
         <field>
             <a>category</a>
             <b>categoryDto</b>
+        </field>
+        <field>
+            <a is-accessible="true">correctAnswers</a>
+            <b>correctAnswers</b>
+        </field>
+        <field>
+            <a is-accessible="true">possibleAnswers</a>
+            <b>possibleAnswers</b>
         </field>
     </mapping>
     <mapping>
@@ -58,6 +65,18 @@
         <field>
             <a>test</a>
             <b>testDto</b>
+        </field>
+        <field>
+            <a is-accessible="true">correctAnswers</a>
+            <b>correctAnswers</b>
+        </field>
+        <field>
+            <a is-accessible="true">possibleAnswers</a>
+            <b>possibleAnswers</b>
+        </field>
+        <field>
+            <a is-accessible="true">selectedAnswers</a>
+            <b>selectedAnswers</b>
         </field>
     </mapping>
 </mappings>

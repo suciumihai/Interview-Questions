@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-public class TestQuestion {
+public class TestQuestion implements Serializable {
 
     public TestQuestion(Question question){
         this.name = question.getName();
@@ -23,6 +24,7 @@ public class TestQuestion {
         this.content = question.getContent();
         this.possibleAnswers.addAll(question.getPossibleAnswers());
         this.correctAnswers.addAll(question.getCorrectAnswers());
+        this.test = null;
     }
 
     @Id
@@ -51,7 +53,7 @@ public class TestQuestion {
     @ElementCollection(targetClass = String.class)
     final private List<String> selectedAnswers = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(targetEntity=Test.class)
     @JoinColumn(name = "test_id")
     @JsonIgnore
     private Test test;

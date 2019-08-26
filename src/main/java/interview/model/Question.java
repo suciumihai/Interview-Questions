@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Question implements Comparable<Question>{
+public class Question implements Comparable<Question>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

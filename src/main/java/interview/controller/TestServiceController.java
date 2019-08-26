@@ -63,12 +63,12 @@ public class TestServiceController {
                 Random rand = new Random();
                 TestQuestion q = questions.get(rand.nextInt(questions.size()));
                 q.setTest(entity);
-                //testQuestionRepository.save(q); fair enough. merge. da nu salvez in repo. Mai am nevoie de testQuest?!?!?
+                testQuestionRepository.save(q);
                 if (testQuestions.add(q))
                         i++;
             }
         }
-
+        testQuestionRepository.flush();
         entity.getTestQuestions().addAll(testQuestions);
         Test created = repo.save(entity);
         return convertToDto(created);
@@ -78,13 +78,25 @@ public class TestServiceController {
     public void update(@PathVariable("id") String id, @RequestBody TestDto body){
         Test entity = convertToEntity(body);
         Test existing = repo.findById(Long.valueOf(id)).get();
-        existing.setCandidate(entity.getCandidate());
-        existing.setNota(entity.getNota());
-        existing.setTemplate(entity.getTemplate());
-        existing.getTestQuestions().clear();
-        existing.getTestQuestions().addAll(entity.getTestQuestions());
-        existing.setName(entity.getName());
+        Set<TestQuestion> testQs = new HashSet<>();
+        for (TestQuestion testQ : entity.getTestQuestions()){
+            testQuestionRepository.getByName(testQ.getName()).getSelectedAnswers().addAll(testQ.getSelectedAnswers());
+        }
         repo.save(existing);
+
+        List<String> corAns = new ArrayList<>();
+        List<String> selAns = new ArrayList<>();
+        List<TestQuestion> tQs = new ArrayList<>(existing.getTestQuestions());
+
+        for (TestQuestion tQ : tQs) {
+            corAns.addAll(tQ.getCorrectAnswers());
+            selAns.addAll(tQ.getSelectedAnswers());
+        }
+
+        if (corAns.equals(selAns))
+            existing.setNota("100");
+        repo.save(existing);
+        System.out.println(existing.getNota());
     }
 
     @RequestMapping(value="/tests/{id}", method = RequestMethod.DELETE)

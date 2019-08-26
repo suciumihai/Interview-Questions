@@ -19,7 +19,7 @@ public class TestDto {
 
     private CandidateDto candidateDto;
 
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    //@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private Set<TestQuestionDto> testQuestionsDto = new HashSet<>();
 
     private String name;
