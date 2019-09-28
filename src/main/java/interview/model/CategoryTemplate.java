@@ -1,6 +1,7 @@
 package interview.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import interview.Enums.DifficultyLevel;
 import lombok.*;
 import org.hibernate.annotations.Proxy;
 
@@ -29,11 +30,10 @@ public class CategoryTemplate implements Serializable{
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column
     private int questionNumber = 0;
 
-    @Column
-    private String difficulty;
+    @Enumerated(EnumType.STRING)
+    private DifficultyLevel difficulty;
 
 
 }

@@ -1,5 +1,6 @@
 package interview.dao;
 
+import interview.Enums.DifficultyLevel;
 import interview.model.Category;
 import interview.model.Test;
 import interview.model.TestQuestion;
@@ -20,14 +21,14 @@ public class TestQuestionRepositoryImpl implements TestQuestionRepositoryCustom 
 
     // nu prea mai e necesara, doar pt staticInit
     @Override
-    public Set<TestQuestion> findQuestByCategDiffi(String category, String difficulty) {
+    public Set<TestQuestion> findQuestByCategDiffi(String category, DifficultyLevel difficulty) {
 
         all = testQuestionRepository.findAll();
 
         Set<TestQuestion> allNoDupli = new HashSet<>(all);
 
         for (TestQuestion question : allNoDupli) {
-            if (question.getCategory().getName().equals(category) && question.getDifficulty().equals(difficulty))
+            if (question.getCategory().getName().equals(category) && question.getQuestionReusable().getDifficulty().equals(difficulty))
                 res.add(question);
         }
 
@@ -41,7 +42,7 @@ public class TestQuestionRepositoryImpl implements TestQuestionRepositoryCustom 
         List<TestQuestion> testQuestions = new ArrayList<>();
         testQuestions = testQuestionRepository.findAll();
         for (TestQuestion testQuestion : testQuestions) {
-            if (testQuestion.getName().equals(name))
+            if (testQuestion.getQuestionReusable().getName().equals(name))
                 return testQuestion;
         }
         return null;

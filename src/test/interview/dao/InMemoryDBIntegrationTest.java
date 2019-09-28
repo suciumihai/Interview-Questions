@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import interview.Enums.DifficultyLevel;
 import interview.config.JpaConfig;
 import interview.model.*;
 import org.assertj.core.util.Lists;
@@ -64,9 +65,9 @@ public class InMemoryDBIntegrationTest {
         categoryRepository.save(java);
 
         Question question1 = new Question();
-        question1.setName("q1");
-        question1.setDifficulty("Easy");
-        question1.setContent("este java OOP?");
+        question1.getQuestionReusable().setName("q1");
+        question1.getQuestionReusable().setDifficulty(DifficultyLevel.Easy);
+        question1.getQuestionReusable().setContent("este java OOP?");
         question1.setCategory(java);
         questionRepository.save(question1);
 
@@ -92,36 +93,36 @@ public class InMemoryDBIntegrationTest {
         q1PosAns.add("Poate");
 
         Question question1 = new Question();
-        question1.setName("q1");
-        question1.setDifficulty("Easy");
-        question1.setContent("este java OOP?");
+        question1.getQuestionReusable().setName("q1");
+        question1.getQuestionReusable().setDifficulty(DifficultyLevel.Easy);
+        question1.getQuestionReusable().setContent("este java OOP?");
         question1.getCorrectAnswers().addAll(q1CorAns);
         question1.getPossibleAnswers().addAll(q1PosAns);
         question1.setCategory(java);
         questionRepository.save(question1);
 
         Question question2 = new Question();
-        question2.setName("q2");
-        question2.setDifficulty("Easy");
-        question2.setContent("O clasa abstracta nu se instantiaza");
+        question2.getQuestionReusable().setName("q2");
+        question2.getQuestionReusable().setDifficulty(DifficultyLevel.Easy);
+        question2.getQuestionReusable().setContent("O clasa abstracta nu se instantiaza");
         question2.getCorrectAnswers().addAll(q1CorAns);
         question2.getPossibleAnswers().addAll(q1PosAns);
         question2.setCategory(java);
         questionRepository.save(question2);
 
         Question question3 = new Question();
-        question3.setName("q3");
-        question3.setDifficulty("Medium");
-        question3.setContent("select * iti da totu din tabel?");
+        question3.getQuestionReusable().setName("q3");
+        question3.getQuestionReusable().setDifficulty(DifficultyLevel.Medium);
+        question3.getQuestionReusable().setContent("select * iti da totu din tabel?");
         question3.getCorrectAnswers().addAll(q1CorAns);
         question3.getPossibleAnswers().addAll(q1PosAns);
         question3.setCategory(sql);
         questionRepository.save(question3);
 
         Question question4 = new Question();
-        question4.setName("q4");
-        question4.setDifficulty("Hard");
-        question4.setContent("TO_DATE('yyyy-mm-dd', '2019-07-31') e corect");
+        question4.getQuestionReusable().setName("q4");
+        question4.getQuestionReusable().setDifficulty(DifficultyLevel.Hard);
+        question4.getQuestionReusable().setContent("TO_DATE('yyyy-mm-dd', '2019-07-31') e corect");
         question4.getCorrectAnswers().addAll(q1CorAns);
         question4.getPossibleAnswers().addAll(q1PosAns);
         question4.setCategory(sql);
@@ -131,14 +132,14 @@ public class InMemoryDBIntegrationTest {
         TwoEasyJava.setName("2 easy java");
         TwoEasyJava.setCategory(java);
         TwoEasyJava.setQuestionNumber(2);
-        TwoEasyJava.setDifficulty("Easy");
+        TwoEasyJava.setDifficulty(DifficultyLevel.Easy);
         categoryTemplateRepository.save(TwoEasyJava);
 
         CategoryTemplate OneMedSql = new CategoryTemplate();
         OneMedSql.setName("1 med sql");
         OneMedSql.setCategory(sql);
         OneMedSql.setQuestionNumber(1);
-        OneMedSql.setDifficulty("Medium");
+        OneMedSql.setDifficulty(DifficultyLevel.Medium);
         categoryTemplateRepository.save(OneMedSql);
 
         List<CategoryTemplate> catTemplates = new ArrayList<>();
@@ -184,14 +185,14 @@ public class InMemoryDBIntegrationTest {
         TwoEasyJava.setName("2 easy java");
         TwoEasyJava.setCategory(java);
         TwoEasyJava.setQuestionNumber(2);
-        TwoEasyJava.setDifficulty("Easy");
+        TwoEasyJava.setDifficulty(DifficultyLevel.Easy);
         categoryTemplateRepository.save(TwoEasyJava);
 
         CategoryTemplate OneMedSql = new CategoryTemplate();
         OneMedSql.setName("1 med sql");
         OneMedSql.setCategory(sql);
         OneMedSql.setQuestionNumber(1);
-        OneMedSql.setDifficulty("Medium");
+        OneMedSql.setDifficulty(DifficultyLevel.Medium);
         categoryTemplateRepository.save(OneMedSql);
 
         List<CategoryTemplate> listOfCategoryTemplates = Lists.newArrayList(OneMedSql, TwoEasyJava);

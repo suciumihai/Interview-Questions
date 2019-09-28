@@ -80,7 +80,7 @@ public class TestServiceController {
         Test existing = repo.findById(Long.valueOf(id)).get();
         Set<TestQuestion> testQs = new HashSet<>();
         for (TestQuestion testQ : entity.getTestQuestions()){
-            testQuestionRepository.getByName(testQ.getName()).getSelectedAnswers().addAll(testQ.getSelectedAnswers());
+            testQuestionRepository.getByName(testQ.getQuestionReusable().getName()).getSelectedAnswers().addAll(testQ.getSelectedAnswers());
         }
         repo.save(existing);
 

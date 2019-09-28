@@ -5,7 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -26,7 +28,7 @@ public class Category {
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
-    final private List<Category> children=new ArrayList<Category>();
+    final private Set<Category> children = new HashSet<>();
 
 
 }

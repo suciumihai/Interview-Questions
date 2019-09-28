@@ -15,15 +15,11 @@ public class QuestionDto {
 
     private Long id;
 
-    private String name;
-
-    private String difficulty;
-
     private CategoryDto categoryDto;
 
-    private String content;
+    private QuestionReusableDto questionReusableDto;
 
-    private List<String> possibleAnswers = new ArrayList<>();
+    final private List<String> possibleAnswers = new ArrayList<>();
 
-    private List<String> correctAnswers = new ArrayList<>();
+    final private List<String> correctAnswers = new ArrayList<>();
 }

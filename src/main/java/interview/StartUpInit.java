@@ -3,6 +3,8 @@ package interview;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import interview.Enums.DifficultyLevel;
+import interview.Enums.UserRole;
 import interview.dao.*;
 import interview.model.*;
 import lombok.extern.slf4j.Slf4j;
@@ -66,12 +68,12 @@ public class StartUpInit {
 
         User user1 = new User();
         user1.setEmail("hr@ceva.com");
-        user1.setRole("HR");
+        user1.setUserRole(UserRole.HR);
         userRepository.save(user1);
 
         User user2 = new User();
         user2.setEmail("questionAdmin@ceva.com");
-        user2.setRole("questionAdmin");
+        user2.setUserRole(UserRole.QuestionAdmin);
         userRepository.save(user2);
 
         Category java = new Category();
@@ -92,9 +94,9 @@ public class StartUpInit {
         q1PosAns.add("Poate");
 
         Question question1 = new Question();
-        question1.setName("q1");
-        question1.setDifficulty("Easy");
-        question1.setContent("este java OOP?");
+        question1.getQuestionReusable().setName("q1");
+        question1.getQuestionReusable().setDifficulty(DifficultyLevel.Easy);
+        question1.getQuestionReusable().setContent("este java OOP?");
         question1.getPossibleAnswers().addAll(q1PosAns);
         question1.getCorrectAnswers().addAll(q1CorAns);
         question1.setCategory(java);
@@ -102,9 +104,9 @@ public class StartUpInit {
         testQuestionRepository.save(new TestQuestion(question1));
 
         Question question2 = new Question();
-        question2.setName("q2");
-        question2.setDifficulty("Easy");
-        question2.setContent("O clasa abstracta nu se instantiaza");
+        question2.getQuestionReusable().setName("q2");
+        question2.getQuestionReusable().setDifficulty(DifficultyLevel.Easy);
+        question2.getQuestionReusable().setContent("O clasa abstracta nu se instantiaza");
         question2.getPossibleAnswers().addAll(q1PosAns);
         question2.getCorrectAnswers().addAll(q1CorAns);
         question2.setCategory(java);
@@ -112,9 +114,9 @@ public class StartUpInit {
         testQuestionRepository.save(new TestQuestion(question2));
 
         Question question3 = new Question();
-        question3.setName("q3");
-        question3.setDifficulty("Medium");
-        question3.setContent("select * iti da totu din tabel?");
+        question3.getQuestionReusable().setName("q3");
+        question3.getQuestionReusable().setDifficulty(DifficultyLevel.Medium);
+        question3.getQuestionReusable().setContent("select * iti da totu din tabel?");
         question3.getPossibleAnswers().addAll(q1PosAns);
         question3.getCorrectAnswers().addAll(q1CorAns);
         question3.setCategory(sql);
@@ -122,9 +124,9 @@ public class StartUpInit {
         testQuestionRepository.save(new TestQuestion(question3));
 
         Question question4 = new Question();
-        question4.setName("q4");
-        question4.setDifficulty("Hard");
-        question4.setContent("TO_DATE('yyyy-mm-dd', '2019-07-31') e corect");
+        question4.getQuestionReusable().setName("q4");
+        question4.getQuestionReusable().setDifficulty(DifficultyLevel.Hard);
+        question4.getQuestionReusable().setContent("TO_DATE('yyyy-mm-dd', '2019-07-31') e corect");
         question4.getPossibleAnswers().addAll(q1PosAns);
         question4.getCorrectAnswers().addAll(q1CorAns);
         question4.setCategory(sql);
@@ -135,14 +137,14 @@ public class StartUpInit {
         TwoEasyJava.setName("2 easy java");
         TwoEasyJava.setCategory(java);
         TwoEasyJava.setQuestionNumber(2);
-        TwoEasyJava.setDifficulty("Easy");
+        TwoEasyJava.setDifficulty(DifficultyLevel.Easy);
         categoryTemplateRepository.save(TwoEasyJava);
 
         CategoryTemplate OneMedSql = new CategoryTemplate();
         OneMedSql.setName("1 med sql");
         OneMedSql.setCategory(sql);
         OneMedSql.setQuestionNumber(1);
-        OneMedSql.setDifficulty("Medium");
+        OneMedSql.setDifficulty(DifficultyLevel.Medium);
         categoryTemplateRepository.save(OneMedSql);
 
         List<CategoryTemplate> catTemplates = new ArrayList<>();
@@ -173,7 +175,7 @@ public class StartUpInit {
             while (i < testCatTemplate.getQuestionNumber()){
                 Random rand = new Random();
                 Question q = questions.get(rand.nextInt(questions.size()));
-                TestQuestion tq = testQuestionRepository.getByName(q.getName());
+                TestQuestion tq = testQuestionRepository.getByName(q.getQuestionReusable().getName());
                 if (testQuestions.add(tq))
                     i++;
             }

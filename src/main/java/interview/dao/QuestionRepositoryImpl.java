@@ -1,5 +1,6 @@
 package interview.dao;
 
+import interview.Enums.DifficultyLevel;
 import interview.model.Category;
 import interview.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ public class QuestionRepositoryImpl implements QuestionRepositoryCustom {
 
     // nu prea mai e necesara, doar pt staticInit
     @Override
-    public Set<Question> findQuestByCategDiffi(Category category, String difficulty) {
+    public Set<Question> findQuestByCategDiffi(Category category, DifficultyLevel difficulty) {
 
         all = questionRepository.findAll();
 
         Set<Question> allNoDupli = new HashSet<>(all);
 
         for (Question question : allNoDupli) {
-            if (question.getCategory().equals(category) && question.getDifficulty().equals(difficulty))
+            if (question.getCategory().equals(category) && question.getQuestionReusable().getDifficulty().equals(difficulty))
                 res.add(question);
         }
 

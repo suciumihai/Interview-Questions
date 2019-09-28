@@ -24,22 +24,6 @@
         </field>
     </mapping>
     <mapping>
-        <class-a>interview.model.Question</class-a>
-        <class-b>interview.model.DTO.QuestionDto</class-b>
-        <field>
-            <a>category</a>
-            <b>categoryDto</b>
-        </field>
-        <field>
-            <a is-accessible="true">correctAnswers</a>
-            <b>correctAnswers</b>
-        </field>
-        <field>
-            <a is-accessible="true">possibleAnswers</a>
-            <b>possibleAnswers</b>
-        </field>
-    </mapping>
-    <mapping>
         <class-a>interview.model.Test</class-a>
         <class-b>interview.model.DTO.TestDto</class-b>
         <field>
@@ -59,12 +43,12 @@
         <class-a>interview.model.TestQuestion</class-a>
         <class-b>interview.model.DTO.TestQuestionDto</class-b>
         <field>
-            <a>category</a>
-            <b>categoryDto</b>
+            <a>questionReusable</a>
+            <b>questionReusableDto</b>
         </field>
         <field>
-            <a>test</a>
-            <b>testDto</b>
+            <a>category</a>
+            <b>categoryDto</b>
         </field>
         <field>
             <a is-accessible="true">correctAnswers</a>
@@ -77,6 +61,26 @@
         <field>
             <a is-accessible="true">selectedAnswers</a>
             <b>selectedAnswers</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>interview.model.Question</class-a>
+        <class-b>interview.model.DTO.QuestionDto</class-b>
+        <field>
+            <a>questionReusable</a>
+            <b>questionReusableDto</b>
+        </field>
+        <field>
+            <a>category</a>
+            <b>categoryDto</b>
+        </field>
+        <field>
+            <a is-accessible="true">correctAnswers</a>
+            <b>correctAnswers</b>
+        </field>
+        <field>
+            <a is-accessible="true">possibleAnswers</a>
+            <b>possibleAnswers</b>
         </field>
     </mapping>
 </mappings>

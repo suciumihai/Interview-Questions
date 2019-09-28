@@ -1,6 +1,7 @@
 package interview.model.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import interview.model.QuestionReusable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,20 +17,15 @@ public class TestQuestionDto {
 
     private Long id;
 
-    private String name;
-
-    private String difficulty;
-
     private CategoryDto categoryDto;
 
-    private String content;
+    private QuestionReusableDto questionReusableDto;
 
-    //@ElementCollection(targetClass = String.class)
-    private List<String> possibleAnswers = new ArrayList<>();
+    final private List<String> possibleAnswers = new ArrayList<>();
 
-    private List<String> correctAnswers = new ArrayList<>();
+    final private List<String> correctAnswers = new ArrayList<>();
 
-    private List<String> selectedAnswers = new ArrayList<>();
+    final private List<String> selectedAnswers = new ArrayList<>();
 
     @JsonIgnore
     private TestDto testDto;

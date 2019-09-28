@@ -61,9 +61,9 @@ public class QuestionServiceController {
         Question entity = convertToEntity(body);
         Question existing = repo.findById(Long.valueOf(id)).get();
         existing.setCategory(entity.getCategory());
-        existing.setContent(entity.getContent());
-        existing.setDifficulty(entity.getDifficulty());
-        existing.setName(entity.getName());
+        existing.getQuestionReusable().setContent(entity.getQuestionReusable().getContent());
+        existing.getQuestionReusable().setDifficulty(entity.getQuestionReusable().getDifficulty());
+        existing.getQuestionReusable().setName(entity.getQuestionReusable().getName());
         existing.getPossibleAnswers().clear();
         existing.getPossibleAnswers().addAll(entity.getPossibleAnswers());
         existing.getCorrectAnswers().clear();

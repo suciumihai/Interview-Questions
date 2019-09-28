@@ -57,7 +57,7 @@ public class UserServiceController {
         User entity = convertToEntity(userDto);
         User existing = userRepository.findById(Long.valueOf(id)).get();
         existing.setEmail(entity.getEmail());
-        existing.setRole(entity.getRole());
+        existing.setUserRole(entity.getUserRole());
         existing.setPassword(entity.getPassword());
         userRepository.save(existing);
     }

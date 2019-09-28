@@ -1,5 +1,6 @@
 package interview.model;
 
+import interview.Enums.UserRole;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -22,5 +23,6 @@ public class User {
 
     private String password;
 
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
 }

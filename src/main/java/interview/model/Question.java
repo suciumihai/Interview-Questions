@@ -1,5 +1,6 @@
 package interview.model;
 
+import interview.Enums.DifficultyLevel;
 import lombok.*;
 import org.hibernate.annotations.Proxy;
 
@@ -19,18 +20,12 @@ public class Question implements Comparable<Question>, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="name", unique = true, nullable = false)
-    private String name;
-
-    @Column
-    private String difficulty;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column
-    private String content;
+    @Embedded
+    private QuestionReusable questionReusable = new QuestionReusable();
 
     @ElementCollection(targetClass = String.class)
     final private List<String> possibleAnswers = new ArrayList<>();
@@ -40,7 +35,7 @@ public class Question implements Comparable<Question>, Serializable {
 
     @Override
     public int compareTo(Question question) {
-        return (this.name.compareTo(question.getName()));
+        return (this.getQuestionReusable().getName().compareTo(question.getQuestionReusable().getName()));
     }
 
 }
