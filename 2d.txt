@@ -52,11 +52,12 @@ mai tre ng generate component user (sau candidate, ce vrei).
 daca dai in balarii, Specify the module using the --module parameter. For example, if the main module is app.module.ts, run this:
 ng g c new-component --module app, sau ng generate component user --module app
 
-aranjat poutin application.properties cu server.contextPath=/user-portal
+aranjat poutin application.properties cu server.contextPath=/user-portal, care cred ca e interview cand ai dat ng new interview-app
 
 ai modificat app.component.html cu 2 different views user.component.html, add-user.component.html and components(user.component.ts, add-user.component.ts)
 
-apoi in folderul model, umbli la user.model.ts, user.service.ts (ca in java, pojo si serviciu cu functiile)
+apoi in folderul model, umbli la user.model.ts, user.service.ts (ca in java, pojo si serviciu cu functiile).
+se face directoru models in /app, si in /user se face user.service.ts
 
 configure anguarlr routing in app.routing.module.ts (aici adaug pathyurile, gen / add = addCandiComp)
 
